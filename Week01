@@ -64,4 +64,32 @@ const float pi=3.14;
 Program1 : Write a program To take input of two integer Then print addition and multiplication
 
 SourceCode :
+#include <stdio.h>
+
+int main() {
+
+int a, b;
+int sum, product;
+printf("Enter first number: ");
+scanf("%d", &a);
+
+printf("Enter second number: ");
+scanf("%d", &b);
+
+sum = a+b;
+product = a*b;
+
+printf("Addition = %d\n", sum);
+printf("Multiplication = %d\n", product);
+
+return 0;
+
+}
+
+Output :
+
+Enter first number: 2
+Enter second number: 4
+Addition = 6
+Multiplication = 8
 
