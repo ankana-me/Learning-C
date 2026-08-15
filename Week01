@@ -1,4 +1,4 @@
-Basic Token
+Basic Token :
 1.Variable
 2.Constant
 3.Keywords  32
@@ -59,37 +59,53 @@ const float pi=3.14;
 #define debjit 4
 #define=macro preprocessor
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
 
-Program1 : Write a program To take input of two integer Then print addition and multiplication
+Program1 : Write a program to take input of two integer then print addition and multiplication.
 
 SourceCode :
 #include <stdio.h>
 
 int main() {
+    int a, b;
+    int sum, product;
 
-int a, b;
-int sum, product;
-printf("Enter first number: ");
-scanf("%d", &a);
+    printf("Enter first number: ");
+    scanf("%d", &a);
 
-printf("Enter second number: ");
-scanf("%d", &b);
+    printf("Enter second number: ");
+    scanf("%d", &b);
 
-sum = a+b;
-product = a*b;
+    sum = a + b;
+    product = a * b;
 
-printf("Addition = %d\n", sum);
-printf("Multiplication = %d\n", product);
+    printf("Addition = %d\n", sum);
+    printf("Multiplication = %d\n", product);
 
-return 0;
-
+    return 0;
 }
 
 Output :
-
 Enter first number: 2
 Enter second number: 4
 Addition = 6
 Multiplication = 8
 
+-----------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+
+void main()      // -> entry point
+{
+    int a, b, s;   // declare three integer variable
+    printf("Enter two integers: ");
+    scanf("%d %d", &a, &b);
+    s = a + b;
+    printf("In addition of %d and %d is %d", a, b, s);
+}
+
+Output :
+Enter two integers:
+7
+8
+addition of 7 and 8 is 15
