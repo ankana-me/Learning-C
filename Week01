@@ -1,1 +1,67 @@
+Basic Token
+1.Variable
+2.Constant
+3.Keywords  32
+4.Data Type
+5.Format Specifier
+6.Qualifier                  
+7.Library Function
+8.Header File
+9.Preprocessor
+10.Operator
+11.Compilation and Run
+
+Declaration of variable:
+datatype variablename=value;
+int num=10;
+int cr7=4;
+double messi10=45.67;
+char cr_7='k';
+const int a=5;
+
+Datatype          keywords       size(32bit)          formatspecifier
+Integer           int             4byte                %d %o %x %u %e %i
+Float             float           4byte                %f
+Double            double          8byte                %lf
+Char              char            1byte                %c
+
+printf("my name is debanjan mitra");
+printf("format specifier",variablename);
+int a;
+printf("%d",a);
+
+int a=10;
+printf("value of a=%d",a);
+output:
+value of a=10
+
+printf() returns no of char its print
+printf("%d",printf("virat"));  [virat5]
+
+scanf("formatspecifier",&variablename);
+
+int a;
+printf("enter any integer");
+scanf("%d",&a);
+printf("result=%d",a);
+output:
+enter any integer
+5
+result=5
+
+set constant:
+const int a=10;
+const float pi=3.14;
+
+#define debjit 4
+#define=macro preprocessor
+
+#define debjit 4
+#define=macro preprocessor
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Program1 : Write a program To take input of two integer Then print addition and multiplication
+
+SourceCode :
 
