@@ -1,1 +1,285 @@
+Program1 : Wap to take input of a Celsius temp then covert it into Fahrenheit and print. 
 
+SourceCode :
+#include <stdio.h>
+
+int main() {
+    float c, f;
+
+    printf("Enter temperature in celsius: ");
+    scanf("%f", &c);
+
+    f = (c * 9 / 5) + 32;
+
+    printf("Temperature in Fahrenheit = %.2f\n", f);
+
+    return 0;
+}
+
+Output :
+Enter temperature in celsius: 23
+Temperature in Fahrenheit = 73.40
+
+------------------------------------------------------------------------------------------------------
+
+Program2 : Write a program to take input of radius of a circle then calculate area and perimeter at the end print both the result.
+
+SourceCode :
+#include <stdio.h>
+
+int main()
+{
+    float r, area, perimeter;
+    printf("Enter radius: ");
+    scanf("%f", &r);
+
+    area = 3.14 * r * r;
+    perimeter = 2 * 3.14 * r;
+
+    printf("Area = %.2f\n", area);
+    printf("Perimeter = %.2f", perimeter);
+
+    return 0;
+}
+
+Output :
+Enter radius: 5
+Area = 78.50
+Perimeter = 31.40
+
+-------------------------------------------------------------------------------------------------------
+
+#define — Macro Preprocessor
+#define SHORTCUT 5
+#define → Macro preprocessor
+SHORTCUT → Constant name
+5 → Value
+
+                    ┌─────────┐
+                    │  ex.c   │   (Source Code)
+                    └────┬────┘
+                         │  compilation
+                         ▼
+                    ┌─────────┐
+                    │Compiler │  (Translator)
+                    └────┬────┘
+                         ▼
+                   ◇ Syntax Error? ◇
+                    /            \
+                  NO              YES
+                  /                  \
+                 ▼                    ▼
+           ┌─────────┐          (back to ex.c
+           │ ex.obj  │           to fix errors)
+           └────┬────┘
+                │  Link/Combine
+                ▼
+           ┌─────────┐      Loads
+           │ Linker  │ ───────────► library functions
+           └────┬────┘
+                │  Loader
+                ▼
+           ┌─────────┐
+           │  Loader │
+           └────┬────┘
+                │
+                ▼
+           ┌─────────┐
+           │ ex.exe  │
+           └────┬────┘
+                │  execute
+                ▼
+           ┌─────────┐
+           │ Output  │
+           └─────────┘
+
+Summary of stages:
+
+Stage :	What happens
+ex.c :	Your source code file
+Compiler (translator) :	Checks syntax, converts code toward machine-level
+Syntax Error? :	If YES → back to source to fix errors. If NO → proceed
+ex.obj :	Object file (compiled but not yet linked)
+Linker :	Combines your code with library functions (loads them in)
+Loader :	Loads the final program into memory
+ex.exe :	The executable file
+Execute → Output :	Program runs and produces output
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Type Casting:
+Converting one datatype into another is known as type casting.
+implicit:
+
+void main()
+{
+int a=10,b=4;
+float c;
+c=a/b;
+printf("%.2f",c);
+}   
+output:2.00
+
+Explicit:
+
+void main()
+{
+int a=10,b=4;
+float c;
+c=(float)a/b;
+printf("%.2f",c);
+}   
+output:2.50
+
+Operator:
+
+void main()               Arithmetic Operator: + - * / %
+{
+int a=10,b=3;
+printf("%d",a/b);
+printf("\n%d",a%b);
+}
+output:3
+       1
+void main()
+{
+float a=10,b=4;
+printf("%.2f",a/b);
+printf("\n%f",a/b);
+}
+output:
+2.50
+2.500000
+
+void main()                     //Relational Operator: < > == <= >= !=
+{
+int a=10,b=5,c=6,d=7,e,f;
+e=a>b;
+f=c<d;
+printf("%d\t%d",e,f);
+}
+output:
+1 1
+
+void  main()
+{
+int a=45,b=23,c=56,d=56,e=9;
+printf("%d%d%d%d",a!=b,c==d,e>b,c<=d);
+}
+ouput:
+1101
+
+
+void main()               //logical opeartor: and(&&) or(||)  not(!)
+{
+int a=10,b=7,c=4,d=7,e,f;            A B A&&B       A B A||B      A !A
+e=(a>b)&&(c<d);                      0 0 0          0 0 0         0  1
+f=(a!=b)||(c==d);                    0 1 0          0 1 1         1  0       
+printf("%d%d",e,f);                  1 0 0          1 0 1
+}                                    1 1 1          1 1 1
+ output
+11
+
+
+void main()
+{
+int a=12,b=45,c=67,d,e,f;
+d=!(a>b);
+e=(a>b)&&(c<b);
+f=(a==b)||(c>b);
+printf("%d%d%d",d,e,f);
+}	
+ouput:
+101
+
+
+    
+void main()          //ternary operator or conditional operator  ?:
+{
+int a=20,b=7,c;
+c=(a>b)?9:4;
+printf("%d",c);
+} 
+output:
+9
+
+
+void main()
+{
+int a=10,b=34,c;
+c=(a<b)?((5>4)?6:7):9;
+printf("%d",c);
+}
+
+output:
+6
+
+a+=3;                     //assignment operator =  +=  -= *= /=
+equivalent to a=a+3;
+
+a*=2;(correct)
+is equivalent to a=a*2;
+a=*2;(wrong)
+
+                              //Unary operator: ++ -- -
+void main()
+{
+int a=5,b;
+b=-a;
+printf("%d",b);
+}
+output:-5
+
+i++          
+++i
+i=i+1; 
+i--
+--i
+i=i-1; 
+
+void main()
+{
+int a=5;
+printf("%d",a++);         
+printf("\t%d",++a);
+}
+output:
+5 7
+
+
+                                   // bitwise operator & | ^ << >>
+
+void main()
+{
+int a=12,b=7;                            a=1100   
+printf("%d\t%d\t%d",a&b,a|b,a^b);        b=0111
+}
+output:
+8 15 11
+
+void main()
+{
+int a=37,b=8;                          a=100101
+printf("%o %o %o",a&b,a|b,a^b);        b=001000
+}
+output:
+0 55 55 
+
+
+void main()
+{
+int a=10;
+printf("%d\t%d",a<<2,a>>2);            
+}                                      
+output:
+40 2
+
+//sizeof()
+
+void main()
+{
+int a=5;
+printf("%d %d",sizeof(a),size(float));
+}
+output:
+4 4
