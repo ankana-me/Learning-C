@@ -293,3 +293,88 @@ initializes the stack and CPU registers, and transfers execution control to the 
 # Type casting in C is the process of converting a variable or value from one data type to another. 
 It allows you to temporarily alter how the compiler interprets a piece of data to perform specific operations, maintain precision, or ensure compatibility across different data types.
 
+Key Differences at a Glance
+
+Feature: Done By
+Implicit Conversion: Performed by the compiler
+Explicit Type Casting: Initiated manually by the programmer
+
+Feature: Operator
+Implicit Conversion: No operator is needed
+Explicit Type Casting: Requires the (type) cast operator
+
+Feature: Data Loss
+Implicit Conversion: Generally safe; upgrades types
+Explicit Type Casting: Risk of data loss if downgrading types
+
+Feature: Direction
+Implicit Conversion: Narrowing to widening (e.g., int to float)
+Explicit Type Casting: Any direction (e.g., float to int truncates decimals)
+
+-------------------------------------------------------------------------------------------------------------
+
+1. The Program (Question) :
+
+#include <stdio.h>
+void main()
+{
+    int a = 10, b = 8, c = 7, d = 6, e, f, g, h;
+
+    e = (a > 2) && (c != d);
+    f = (a != b) || (c > d);
+
+    g = e++;
+    h = ++g;
+
+    printf("%d %d %d %d %d %d %d %d",
+           a++, ++b, c++, ++d, e++, ++f, g++, ++h);
+}
+
+2. Process (Explanation) :
+
+Step 1: Initial values
+a=10, b=8, c=7, d=6
+
+Step 2: Evaluate logical expressions
+e = (a > 2) && (c != d)
+  = (10 > 2) && (7 != 6)
+  = 1 && 1
+  = 1
+
+f = (a != b) || (c > d)
+  = (10 != 8) || (7 > 6)
+  = 1 || 1   → short-circuits at first true condition
+  = 1
+
+Step 3: Increment operations on e, g, h
+g = e++   → g takes e's current value (1), THEN e increases by 1
+  → g = 1, e becomes 2
+
+h = ++g   → g increases by 1 FIRST, then h takes that value
+  → g = 2, h = 2
+
+Values just before the printf line:
+a=10, b=8, c=7, d=6, e=2, f=1, g=2, h=2
+
+Step 4: Evaluate printf arguments left to right
+a++   → prints old value 10, then a becomes 11
+++b   → b becomes 9,  prints 9
+c++   → prints old value 7,  then c becomes 8
+++d   → d becomes 7,  prints 7
+e++   → prints old value 2,  then e becomes 3
+++f   → f becomes 2,  prints 2
+g++   → prints old value 2,  then g becomes 3
+++h   → h becomes 3,  prints 3
+
+Key rule:
+- Post-increment (x++) → USE the current value first, increase AFTER
+- Pre-increment (++x)  → INCREASE first, THEN use the new value
+
+3. Final Answer :
+
+10 9 7 7 2 2 2 3
+
+  ┌───────────────┐
+# | void main(){} | --> Smallest C Program
+  └───────────────┘
+
