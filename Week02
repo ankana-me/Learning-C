@@ -283,3 +283,13 @@ printf("%d %d",sizeof(a),size(float));
 }
 output:
 4 4
+
+-------------------------------------------------------------------------------------------------------
+
+# In C, the loader is a critical OS component that acts right at runtime. When you run an executable, 
+the loader reads the file from disk, allocates memory, maps virtual memory segments, links shared libraries, 
+initializes the stack and CPU registers, and transfers execution control to the main program.
+
+# Type casting in C is the process of converting a variable or value from one data type to another. 
+It allows you to temporarily alter how the compiler interprets a piece of data to perform specific operations, maintain precision, or ensure compatibility across different data types.
+
