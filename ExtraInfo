@@ -1,0 +1,99 @@
+TCS Questions 2026
+
+Program 1 :
+Easy te given array thakbe 
+Target element find korte hobe
+Joto bar find korbe tar age  joto gulo less  than target thakbe count hobe
+
+
+100 200 150 200 300 200
+Target 200
+
+1st time 200 er age 100 kom ache count 1
+
+Then 200 er age 150 ar 100
+Count 2
+
+Evabe last e sob count add on kore print
+
+Program 2 :
+You are given a sequence of integers as a single line of space separated values. The number of elements is not given explicitly. 
+Your task is to sort the array using merge sort and count the number of swaps
+. Return the total count. 
+Test Case 1
+ Input = 5 3 2 4 1
+output =  8.
+
+
+Test case 2
+Input = 8 7 6 5
+Output = 6
+
+Program 3 :
+Medium level question:
+
+Selection sort performing for p no of  pass
+
+Input:
+n= 5(size of array)
+p = 3(no of pass)
+arr [] = 5 1 7 3 2 
+ 
+Output:
+1 2 3 7 5 
+
+Explain: 
+After 1st pass
+1 5 7 3 2
+After 2nd pass
+1 2 7 3 5
+After 3rd pass
+1 2 3 7 5
+
+Program 4 :
+Easy question:
+
+Hospital system using priority queue
+
+Hospital system can do two operation on basis of 2 number 1 and 2,
+1 for entry of a patient severity 
+2 for do the treatment 
+
+Take input in one line where first integer denote the no of operation.
+In output print the severity of listed patient if no patient is pending print "No Patient"
+Input : 7 1 10 1 3 2 1 5 2 2 2
+Output: 3 5 10 No patient
+
+Explain:
+1-> 10    add 10 in mean heap(10)
+1-> 3.      add 3 in mean heap(3,10)
+2 
+So perform operation pop element from mean heap(priority queue) which is 3 
+Then 
+1-> 5   add 5 in priority queue(5,10)
+2
+So pop from mean heap and output is 5
+2 
+Again pop from mean heap and output is 10
+2 
+Now no element present in mean heap so output is No Patient 
+
+Output: 3 5 10 No Patient
+
+Program 5 :
+A building has N rooms, and the electricity consumption of each room is recorded for M consecutive days. 
+The electricity consumption values are given in the form of an N × M matrix, where each row represents a room and each column represents a day. 
+For each room, the total electricity consumption over all the given days has to be calculated. You need to determine:
+The number of rooms whose total electricity consumption is zero.
+The room(s) whose electricity consumption is continuously increasing day by day.
+The total electricity consumption of each room (if required).
+
+Program 6 :
+You are given `N` records, where each record contains three values: **timestamp, device ID, and weight**. 
+You are also given an integer `K`. The records must first be sorted in ascending order of **timestamp**; if two records have the same timestamp, they must be sorted by **device ID**. 
+After sorting, duplicate records must be removed. Finally, among the unique records, find all records whose **weight is equal to `K`** and display them in the format `timestamp:deviceID:weight`, 
+maintaining the sorted order. 
+If no record has a weight equal to `K`, return `error not found`.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
