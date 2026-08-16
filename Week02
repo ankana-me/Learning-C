@@ -378,3 +378,73 @@ Key rule:
 # | void main(){} | --> Smallest C Program
   └───────────────┘
 
+Program 1 : 
+#include <stdio.h>
+
+void main()
+{
+    int a = 1, 2, 3;
+    printf("%d", a);
+}
+
+Process :
+"int a = 1, 2, 3;" is being read as a comma-separated list of
+variable declarations, not as multiple values assigned to one variable.
+
+The compiler expects a valid identifier (variable name) after each comma,
+but it finds the numbers 2 and 3 instead, which are not valid names.
+
+This is a syntax error — the declaration is malformed.
+
+Answer : 
+Error
+
+Program 2 :
+#include <stdio.h>
+
+void main()
+{
+    int a = (1, 2, 3);
+    printf("%d", a);
+}
+
+Process :
+Here the "comma operator" is used inside parentheses: (1, 2, 3)
+
+The comma operator evaluates each expression from left to right
+and discards all results except the LAST one.
+
+So (1, 2, 3) evaluates 1, then 2, then 3 — and the entire
+expression takes the value of the last operand, which is 3.
+
+This value (3) is then assigned to 'a'.
+
+Answer : 
+3
+
+Program 3 :
+#include <stdio.h>
+
+void main()
+{
+    int a = {1, 2, 3};
+    printf("%d", a);
+}
+
+Process :
+{1, 2, 3} is an initializer list, normally used for arrays
+(e.g., int arr[3] = {1, 2, 3};)
+
+Here, 'a' is declared as a single int, not an array, so it can
+only hold ONE value.
+
+The compiler takes the first value (1) for 'a', but warns that
+there are extra/excess elements (2 and 3) in the initializer
+that don't fit anywhere.
+
+This produces a warning, not an error — the program still compiles
+and runs.
+
+Answer :
+Warning
+1
