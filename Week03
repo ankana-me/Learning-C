@@ -1,7 +1,6 @@
 Program1: Write a program to swap values of two user given positive integer
 
 SourceCode: 
-
 #include <stdio.h>
 
 int main()
@@ -25,17 +24,19 @@ int main()
     return 0;
 }
 
+Output:
 Enter first number: 10
 Enter second number: 20
 After swapping:
 First number = 20
 Second number = 10
 
-Write a program to take input of length and breadth of a rectangle 
+
+Program2: Write a program to take input of length and breadth of a rectangle 
 Then print difference between area and perimeter 
+(Try to use less no of variable)
 
-Try to use less no of variable
-
+SourceCode:
 #include <stdio.h>
 
 int main()
@@ -50,12 +51,15 @@ int main()
     return 0;
 }
 
+Output:
 Enter length and breadth: 10 5
 Difference = 20
 
-Write a program to take input of three integer
+
+Program3: Write a program to take input of three integer
 Then print largest by using ternary operator
 
+SourceCode:
 #include <stdio.h>
 
 int main()
@@ -72,6 +76,7 @@ int main()
     return 0;
 }
 
+Output:
 Enter three integers: 10 25 15
 Largest = 25
 
