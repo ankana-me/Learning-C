@@ -1,1 +1,77 @@
+Write a program to swap values of two user given positive integer
+
+#include <stdio.h>
+
+int main()
+{
+    int a, b;
+
+    printf("Enter first number: ");
+    scanf("%d", &a);
+
+    printf("Enter second number: ");
+    scanf("%d", &b);
+
+    a = a + b;
+    b = a - b;
+    a = a - b;
+
+    printf("After swapping:\n");
+    printf("First number = %d\n", a);
+    printf("Second number = %d\n", b);
+
+    return 0;
+}
+
+Enter first number: 10
+Enter second number: 20
+After swapping:
+First number = 20
+Second number = 10
+
+Write a program to take input of length and breadth of a rectangle 
+Then print difference between area and perimeter 
+
+Try to use less no of variable
+
+#include <stdio.h>
+
+int main()
+{
+    int l, b;
+
+    printf("Enter length and breadth: ");
+    scanf("%d %d", &l, &b);
+
+    printf("Difference = %d", (l * b) - (2 * (l + b)));
+
+    return 0;
+}
+
+Enter length and breadth: 10 5
+Difference = 20
+
+Write a program to take input of three integer
+Then print largest by using ternary operator
+
+#include <stdio.h>
+
+int main()
+{
+    int a, b, c, largest;
+
+    printf("Enter three integers: ");
+    scanf("%d %d %d", &a, &b, &c);
+
+    largest = (a > b) ? ((a > c) ? a : c) : ((b > c) ? b : c);
+
+    printf("Largest = %d", largest);
+
+    return 0;
+}
+
+Enter three integers: 10 25 15
+Largest = 25
+
+
 
