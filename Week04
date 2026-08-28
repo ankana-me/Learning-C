@@ -77,3 +77,159 @@ Output: Temperature in Reaumur = 29.60
 
 Input:  37, choice 5
 Output: Invalid choice
+
+
+Program2: Write a program to take input of length of a square
+Then press 100 to find out area Or press 200 to find out perimeter 
+
+SourceCode:
+#include <stdio.h>
+
+void main()
+{
+    float side;
+    int choice;
+
+    printf("Enter the length of the square: ");
+    scanf("%f", &side);
+
+    printf("Press 100 to find Area\n");
+    printf("Press 200 to find Perimeter\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+        case 100:
+            printf("Area = %.2f", side * side);
+            break;
+
+        case 200:
+            printf("Perimeter = %.2f", 4 * side);
+            break;
+
+        default:
+            printf("Invalid choice");
+    }
+}
+
+Process:
+Step 1: Take the side length of the square as input (float) —
+        stored in a single variable 'side'.
+
+Step 2: Take the user's menu choice as input (int) — stored in
+        'choice'. No extra variable is used for the result; each
+        formula is calculated directly inside printf.
+
+Step 3: Use a switch statement to branch based on 'choice':
+
+  case 100: Area formula computed and printed directly
+            → side * side
+
+  case 200: Perimeter formula computed and printed directly
+            → 4 * side
+
+Step 4: 'break' after each case exits the switch so other cases
+        don't run.
+
+Step 5: 'default' handles any choice other than 100 or 200,
+        printing "Invalid choice".
+
+Example (Test Runs):
+Input:  side = 5, choice 100
+Output: Area = 25.00
+
+Input:  side = 5, choice 200
+Output: Perimeter = 20.00
+
+Input:  side = 5, choice 50
+Output: Invalid choice
+
+
+Program3: Write a program to take input of an integer
+Then press 1 to indentify the no is odd or even Or press 2 to identify positive or negative
+
+SourceCode:
+#include <stdio.h>
+
+void main()
+{
+    int num, choice;
+
+    printf("Enter an integer: ");
+    scanf("%d", &num);
+
+    printf("Press 1 to check Odd or Even\n");
+    printf("Press 2 to check Positive or Negative\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+        case 1:
+            if (num % 2 == 0)
+                printf("%d is Even", num);
+            else
+                printf("%d is Odd", num);
+            break;
+
+        case 2:
+            if (num > 0)
+                printf("%d is Positive", num);
+            else if (num < 0)
+                printf("%d is Negative", num);
+            else
+                printf("%d is Zero", num);
+            break;
+
+        default:
+            printf("Invalid choice");
+    }
+}
+
+Process:
+Step 1: Take an integer as input — stored in a single variable 'num'.
+
+Step 2: Take the user's menu choice as input — stored in 'choice'.
+        Only these two variables are used; no extra variable is
+        needed for the result.
+
+Step 3: Use a switch statement to branch based on 'choice':
+
+  case 1: Odd/Even check
+    if (num % 2 == 0) → remainder 0 means num is Even
+    else              → any other remainder means num is Odd
+
+  case 2: Positive/Negative check
+    if (num > 0)      → num is Positive
+    else if (num < 0) → num is Negative
+    else              → num is exactly 0, so print Zero
+                        (handles the edge case where 0 is
+                        neither positive nor negative)
+
+Step 4: 'break' after each case exits the switch so other cases
+        don't run.
+
+Step 5: 'default' handles any choice other than 1 or 2,
+        printing "Invalid choice".
+
+Example (Test Runs):
+Input:  num = 7,  choice 1
+Output: 7 is Odd
+
+Input:  num = 8,  choice 1
+Output: 8 is Even
+
+Input:  num = 5,  choice 2
+Output: 5 is Positive
+
+Input:  num = -5, choice 2
+Output: -5 is Negative
+
+Input:  num = 0,  choice 2
+Output: 0 is Zero
+
+Input:  num = 5,  choice 9
+Output: Invalid choice
+
+
