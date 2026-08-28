@@ -1,0 +1,79 @@
+Program1: Write a program to take input of a centigrade temp
+Then press 1 to convert into Fahrenheit
+Or press 2 to convert into kelvin
+Or press 3 to convert into romar
+[1.8*c + 32 , c+273 , c*0.8]
+
+SourceCode:
+#include <stdio.h>
+
+void main()
+{
+    float c;
+    int choice;
+
+    printf("Enter temperature in Centigrade: ");
+    scanf("%f", &c);
+
+    printf("Press 1 to convert to Fahrenheit\n");
+    printf("Press 2 to convert to Kelvin\n");
+    printf("Press 3 to convert to Reaumur\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+        case 1:
+            printf("Temperature in Fahrenheit = %.2f", 1.8 * c + 32);
+            break;
+
+        case 2:
+            printf("Temperature in Kelvin = %.2f", c + 273);
+            break;
+
+        case 3:
+            printf("Temperature in Reaumur = %.2f", c * 0.8);
+            break;
+
+        default:
+            printf("Invalid choice");
+    }
+}
+
+Process:
+Step 1: Take the Centigrade temperature as input (float) — stored
+        in a single variable 'c'.
+
+Step 2: Take the user's menu choice as input (int) — stored in 'choice'.
+        No extra variable is used to store the converted result;
+        the formula is calculated directly inside printf.
+
+Step 3: Use a switch statement to branch based on 'choice':
+
+  case 1: Fahrenheit formula computed and printed directly
+          → 1.8 * c + 32
+
+  case 2: Kelvin formula computed and printed directly
+          → c + 273
+
+  case 3: Reaumur formula computed and printed directly
+          → c * 0.8
+
+Step 4: 'break' after each case exits the switch so other cases
+        don't run.
+
+Step 5: 'default' handles any choice other than 1, 2, or 3,
+        printing "Invalid choice".
+
+Example (Test Runs):
+Input:  37, choice 1
+Output: Temperature in Fahrenheit = 98.60
+
+Input:  37, choice 2
+Output: Temperature in Kelvin = 310.00
+
+Input:  37, choice 3
+Output: Temperature in Reaumur = 29.60
+
+Input:  37, choice 5
+Output: Invalid choice
