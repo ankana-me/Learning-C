@@ -232,4 +232,338 @@ Output: 0 is Zero
 Input:  num = 5,  choice 9
 Output: Invalid choice
 
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
+LOOP:
+
+#include<stdio.h>
+void main()
+{
+int a,b,c;
+printf("enter two values");                    a=10=01010  a=15= 1111
+scanf("%d%d",&a,&b);                           b=22=10110  b=12= 1100
+c=a;                   a=a+b;  a=a*b;   a=a^b;    a=11100  a=    0011
+a=b;                   b=a-b;  b=a/b;   b=a^b;    b=01010  b=    1111
+b=c;                   a=a-b;  a=a/b;   a=a^b;    a=10110  a=    1100
+printf("a=%d,b=%d",a,b);
+}
+
+while(condition)//process repeat until cond is false
+{               //entry control loop
+statement;
+}
+
+do       //at first statement will execute for once,then cond will check
+{        //process repeat until cond false
+statement; //exit control loop
+}while(condition);
+
+void main()
+{
+int i=1;
+while(i<5)
+{
+printf("%d",i);
+i++;
+}
+}  
+output:1234
+
+void main()
+{
+int i=1;
+do{
+printf("%d",i);
+i++;
+}while(i<5);
+}  
+output:1234
+
+
+void main()
+{
+int i=10;
+while(i<5)
+{
+printf("%d",i);
+i++;
+}
+}
+output:no output
+
+void main()
+{
+int i=10;
+do
+{
+printf("%d",i);
+i++;
+}while(i<5);
+}
+output:10
+
+for(initialization;condition;iteration)
+{
+s1;
+}
+
+void main()
+{
+int i;
+for(i=1;i<5;i++)
+printf("%d",i);
+}
+output:1234
+
+void main()
+{
+int i=1;
+for(;i<5;)
+{
+printf("%d",i);
+i++;
+}
+}
+output:1234
+
+void main()
+{
+for(; ;)
+{
+printf("hi");
+}
+}
+output:hihihihihihihihi............................
+
+void main()
+{
+int i;
+for(i=1;i<5;i++);
+printf("%d",i);
+}
+output:5
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Program1: Write a program to calculate factorial of an user given integer 
+
+SourceCode:
+#include <stdio.h>
+
+int main() {
+    int n, i;
+    long factorial = 1;
+    printf("Enter an integer: ");
+    scanf("%d", &n);
+    if (n < 0) {
+        printf("Factorial is not defined for negative numbers.\n");
+    } else {
+        for (i = 1; i <= n; i++) {
+            factorial = factorial * i;
+        }
+        printf("Factorial of %d = %ld\n", n, factorial);
+    }
+    return 0;
+}
+
+Process:
+Step 1: Take an integer as input — stored in 'n'.
+
+Step 2: Initialize 'factorial' to 1 (not 0), since factorial is
+        a product — starting at 0 would make everything multiply
+        to 0.
+
+Step 3: Check if the number is negative:
+        if (n < 0)
+            → Factorial is mathematically undefined for negative
+              numbers, so print an error message and skip
+              the calculation.
+
+Step 4: If n is 0 or positive, run the else block:
+        for (i = 1; i <= n; i++) {
+            factorial = factorial * i;
+        }
+        Each pass multiplies 'factorial' by the current value
+        of i, building up the product step by step.
+
+Step 5: Print the final value of 'factorial' inside the else block.
+
+Note: 'factorial' is declared as 'long' instead of 'int' because
+factorial values grow very fast and can exceed the normal int
+range even for moderately sized inputs.
+
+Edge case: if n = 0, the loop condition (1 <= 0) is false
+immediately, so the loop never runs and factorial stays 1 —
+correctly giving 0! = 1.
+
+Example (Test Runs):
+Input:  5
+Output: Factorial of 5 = 120
+
+Input:  0
+Output: Factorial of 0 = 1
+
+Input:  -3
+Output: Factorial is not defined for negative numbers.
+
+
+Program2: Write a program to identify one user given positive integer is prime or not
+
+SourceCode:
+#include <stdio.h>
+
+int main()
+{
+    int n;
+    printf("enter number");
+    scanf("%d", &n);
+
+    if (n == 1)
+    {
+        printf("not ");
+        return 0;
+    }
+
+    for (int i = 2; i <= n / 2; i++)
+    {
+        if (n % i == 0)
+        {
+            printf("%d is not prime", n);
+            return 0;
+        }
+    }
+
+    printf("%d is prime", n);
+}
+
+Process:
+Step 1: Take an integer as input — stored in 'n'.
+
+Step 2: Special case check first:
+        if (n == 1)
+            → 1 is not prime by definition, so print "not " and
+              return 0 immediately, ending the program right there.
+
+Step 3: If n is not 1, run a for loop checking divisors:
+        for (int i = 2; i <= n / 2; i++)
+            → 'i' is declared directly inside the loop, so no
+              separate variable declaration is needed outside.
+            → Only checks divisors from 2 up to n/2, since no
+              factor of n (other than n itself) can be greater
+              than n/2.
+
+Step 4: Inside the loop:
+        if (n % i == 0)
+            → If n divides evenly by i, n has a factor other
+              than 1 and itself, so it's NOT prime.
+              Print the message and return 0 immediately —
+              this exits the entire program right away, so
+              there's no need for a break statement.
+
+Step 5: If the loop finishes without finding any divisor
+        (meaning the function never hit 'return 0' inside the
+        loop), execution falls through to the last line:
+        printf("%d is prime", n);
+            → This only runs if no divisor was found, confirming
+              n is prime.
+
+Key idea: Instead of using a flag variable, this program uses
+'return 0' to exit the function the moment a decision is made
+(not prime), letting the final printf act as the "prime" case
+by default.
+
+Example (Test Runs):
+Input:  1
+Output: not
+
+Input:  2
+Output: 2 is prime
+
+Input:  4
+Output: 4 is not prime
+
+Input:  17
+Output: 17 is prime
+
+Input:  20
+Output: 20 is not prime
+
+Input:  29
+Output: 29 is prime
+
+
+Program3: Write a program to reverse an user given positive integer
+
+SourceCode:
+#include <stdio.h>
+
+int main()
+{
+    int n, rev = 0, rem;
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+
+    if (n < 0)
+    {
+        printf("Error: Please enter a positive integer.\n");
+    }
+    else
+    {
+        while (n > 0)
+        {
+            rem = n % 10;
+            rev = rev * 10 + rem;
+            n = n / 10;
+        }
+        printf("Reverse = %d", rev);
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Take a positive integer as input — stored in 'n'.
+        'rev' starts at 0 (will hold the reversed number) and
+        'rem' will temporarily hold each extracted digit.
+
+Step 2: Check for negative input first:
+        if (n < 0)
+            → Print an error message, since the program expects
+              only positive integers.
+
+Step 3: If n is valid (0 or positive), use a while loop to
+        reverse the digits:
+        while (n > 0)
+        {
+            rem = n % 10;       // extract the last digit
+            rev = rev * 10 + rem; // shift rev left, add digit
+            n = n / 10;          // remove the last digit from n
+        }
+
+Step 4: Example trace for n = 12345:
+        n=12345 → rem=5, rev=0*10+5=5,     n=1234
+        n=1234  → rem=4, rev=5*10+4=54,    n=123
+        n=123   → rem=3, rev=54*10+3=543,  n=12
+        n=12    → rem=2, rev=543*10+2=5432, n=1
+        n=1     → rem=1, rev=5432*10+1=54321, n=0
+        Loop stops when n becomes 0 (condition n > 0 is false)
+
+Step 5: Print the final value of 'rev', which is the number
+        with its digits reversed.
+
+Key idea: Each loop pass peels off the last digit of n using
+%10 (modulus), and builds the reversed number by shifting rev
+one place left (*10) and adding the peeled digit.
+
+Example (Test Runs):
+Input:  12345
+Output: Reverse = 54321
+
+Input:  100
+Output: Reverse = 1
+
+Input:  7
+Output: Reverse = 7
+
+Input:  -56
+Output: Error: Please enter a positive integer.
