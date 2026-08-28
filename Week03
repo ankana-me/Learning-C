@@ -24,7 +24,10 @@ int main()
     return 0;
 }
 
-Output:
+Process:
+
+
+Example (Test Runs):
 Enter first number: 10
 Enter second number: 20
 After swapping:
@@ -51,7 +54,10 @@ int main()
     return 0;
 }
 
-Output:
+Process:
+
+
+Example (Test Runs):
 Enter length and breadth: 10 5
 Difference = 20
 
@@ -76,9 +82,208 @@ int main()
     return 0;
 }
 
-Output:
+Process:
+
+
+Example (Test Runs):
 Enter three integers: 10 25 15
 Largest = 25
 
+
+Program3: Write a program to take input of three integer
+Then print largest by using ternary operator
+
+SourceCode:
+#include <stdio.h>
+
+void main()
+{
+    int a, b, c, largest;
+
+    printf("Enter three integers: ");
+    scanf("%d %d %d", &a, &b, &c);
+
+    largest = (a > b) ? ((a > c) ? a : c) : ((b > c) ? b : c);
+
+    printf("Largest number = %d", largest);
+}
+
+Process:
+Step 1: Take three integers as input using scanf — a, b, c.
+
+Step 2: The ternary operator works like this:
+condition ? value_if_true : value_if_false
+
+Step 3: Nested ternary logic:
+largest = (a > b) ? ((a > c) ? a : c) : ((b > c) ? b : c);
+
+- First check: (a > b)
+  → If TRUE, a is bigger than b, so now compare a with c:
+      (a > c) ? a : c
+      → if a > c, a is largest, else c is largest
+
+  → If FALSE, b is bigger than or equal to a, so now compare b with c:
+      (b > c) ? b : c
+      → if b > c, b is largest, else c is largest
+
+Step 4: Whichever value comes out of this nested comparison
+is stored in 'largest' and printed.
+
+Example (Test Runs):
+Input:  6 9 3
+Output: Largest number = 9
+
+
+Program4: Write a program to take input of two user given integer
+Then identify which number is large
+
+SourceCode:
+#include <stdio.h>
+
+void main()
+{
+    int a, b;
+
+    printf("Enter two integers: ");
+    scanf("%d %d", &a, &b);
+
+    if (a > b)
+        printf("%d is the largest number", a);
+    else if (b > a)
+        printf("%d is the largest number", b);
+    else
+        printf("Both numbers are equal");
+}
+
+Process:
+Step 1: Take two integers as input using scanf — a and b.
+
+Step 2: Use if-else if-else to compare them:
+
+- if (a > b)
+    → a is greater, so print a
+
+- else if (b > a)
+    → b is greater, so print b
+
+- else
+    → neither is greater than the other, meaning a == b,
+      so print that both are equal
+
+Example (Test Runs):
+Input:  12 7
+Output: 12 is the largest number
+
+Input:  5 5
+Output: Both numbers are equal
+
+
+Program5: Write a program to take input of three different user given integer
+Then by using if else. Print the smallest value
+
+SourceCode:
+#include <stdio.h>
+
+void main()
+{
+    int a, b, c;
+
+    printf("Enter three integers: ");
+    scanf("%d %d %d", &a, &b, &c);
+
+    if (a < b && a < c)
+        printf("Smallest number = %d", a);
+    else if (b < a && b < c)
+        printf("Smallest number = %d", b);
+    else
+        printf("Smallest number = %d", c);
+}
+
+Process:
+Step 1: Take three integers as input using scanf — a, b, c.
+        No extra variable is used to store the result; we print
+        directly inside each branch.
+
+Step 2: Use if-else to compare them:
+
+- if (a < b && a < c)
+    → a is smaller than BOTH b and c, so print a directly
+
+- else if (b < a && b < c)
+    → b is smaller than BOTH a and c, so print b directly
+
+- else
+    → neither a nor b satisfied the above conditions,
+      so by elimination, c must be the smallest — print c directly
+
+Example (Test Runs):
+Input:  6 9 3
+Output: Smallest number = 3
+
+Input:  10 2 5
+Output: Smallest number = 2
+
+Input:  4 8 1
+Output: Smallest number = 1
+
+
+Program6: Write a program to identify one user given year is leap year or not
+
+SourceCode:
+#include <stdio.h>
+
+void main()
+{
+    int year;
+
+    printf("Enter a year: ");
+    scanf("%d", &year);
+
+    if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
+        printf("%d is a leap year", year);
+    else
+        printf("%d is not a leap year", year);
+}
+
+Process:
+Step 1: Take a year as input using scanf.
+
+Step 2: Leap year rule (three conditions combined):
+
+  Rule A: The year must be divisible by 4
+          → year % 4 == 0
+
+  Rule B: BUT if it's divisible by 100, it's NOT a leap year
+          UNLESS it's also divisible by 400
+          → (year % 100 != 0 || year % 400 == 0)
+
+Step 3: Combine both rules with && (AND):
+  year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
+
+  This means:
+  - Divisible by 4 AND
+  - (NOT divisible by 100 OR divisible by 400)
+
+Step 4: If the whole condition is true → leap year
+        Otherwise → not a leap year
+
+Why this works:
+- 2024 → divisible by 4, not by 100 → LEAP YEAR
+- 2023 → not divisible by 4 → NOT a leap year
+- 1900 → divisible by 4 AND 100, but not by 400 → NOT a leap year
+- 2000 → divisible by 4 AND 100 AND 400 → LEAP YEAR
+
+Example (Test Runs):
+Input:  2024
+Output: 2024 is a leap year
+
+Input:  2023
+Output: 2023 is not a leap year
+
+Input:  1900
+Output: 1900 is not a leap year
+
+Input:  2000
+Output: 2000 is a leap year
 
 
