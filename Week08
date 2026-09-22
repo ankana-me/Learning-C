@@ -1,0 +1,39 @@
+One dimensional Array:
+
+Array is a collection of similar type data elements.
+
+declaration:
+datatype arrayname[size];
+ex: int num[5];
+
+size of array is known as boundary condition of array.
+
+All arrays consist of contiguous memory locations. 
+The lowest address corresponds to the first element 
+and the highest address to the last element.
+That's why Array is a linear data structure.
+
+By using an Array,
+we can able to do a same task for more than one same kind of elements.
+
+We can able to access each element by index.
+starting index: 0   end index:n-1
+n:total no of elements
+
+Initializing Arrays:
+You can initialize an array in C either one by one by using loop
+or using a single statement as follows −
+
+double balance[5] = {1000.0, 2.0, 3.4, 7.0, 50.0};
+
+Array initialization by loop:
+for(i=0;i<n;i++)               //consider num is an user given array
+{
+scanf("%d",&num[i]);
+}
+
+Print elements of Array by using loop:
+for(i=0;i<n;i++)
+{
+printf("%d",num[i]);
+}
