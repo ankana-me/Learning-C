@@ -37,3 +37,403 @@ for(i=0;i<n;i++)
 {
 printf("%d",num[i]);
 }
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Program1: Write a C program to take input for an array of size $n$, read its elements, and calculate their sum
+
+SourceCode:
+#include <stdio.h>
+
+void main(){
+    int n,i,s=0;
+    printf("Enter the size of array");
+    scanf("%d",&n);
+    int num[n];
+    printf("\n Enter %d elements",n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&num[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+        s=s+num[i];
+    }
+    printf("\n sum=%d",s);
+}
+
+Process:
+Step 1: Declare variables 'n' (array size), 'i' (loop index), 
+        and initialize 's' to 0 (to accumulate the total sum)[cite: 13].
+
+Step 2: Prompt the user to enter the size of the array and read 'n'[cite: 13]:
+        scanf("%d", &n);[cite: 13]
+
+Step 3: Declare a Variable Length Array (VLA) of size 'n':
+        int num[n];[cite: 13]
+
+Step 4: Use a for loop to read 'n' elements from the user into the array[cite: 13]:
+        for(i = 0; i < n; i++)[cite: 13]
+        {
+            scanf("%d", &num[i]);[cite: 13]
+        }
+        → Elements are stored consecutively at indices 0 to n-1[cite: 13].
+
+Step 5: Use a second for loop to compute the sum of all elements[cite: 13]:
+        for(i = 0; i < n; i++)[cite: 13]
+        {
+            s = s + num[i];[cite: 13]
+        }
+        → In each iteration, the current element num[i] is added to 's'[cite: 13].
+
+Step 6: Example trace for n = 5 with elements {10, 20, 30, 40, 50}[cite: 13]:
+        - Initial: s = 0[cite: 13]
+        - i = 0: s = 0 + 10 = 10[cite: 13]
+        - i = 1: s = 10 + 20 = 30[cite: 13]
+        - i = 2: s = 30 + 30 = 60[cite: 13]
+        - i = 3: s = 60 + 40 = 100[cite: 13]
+        - i = 4: s = 100 + 50 = 150[cite: 13]
+
+Step 7: Print the final sum:
+        printf("\n sum=%d", s);[cite: 13]
+
+Output:
+Enter the size of array5
+ Enter 5 elements10
+20
+30
+40
+50
+
+ sum=150
+
+Notes:
+============================================================
+ARRAY SUMMATION LOGIC:
+============================================================
+
+1. 0-Based Indexing:
+   - In C, array indices always run from 0 to n - 1[cite: 13].
+   - Therefore, the loops run with condition 'i < n'[cite: 13].
+
+2. Variable Length Array (VLA):
+   - 'int num[n];' allocates the array dynamically on the stack 
+     after 'n' is scanned at runtime (supported since C99)[cite: 13].
+
+3. Accumulator Pattern:
+   - Variable 's' must start at 0 so prior garbage memory does 
+     not corrupt the summation[cite: 13].
+
+
+Program2: Write a C program to take input for an array of size $n$, read its elements, and calculate their sum using a single loop
+
+SourceCode:
+#include <stdio.h>
+
+void main(){
+    int n,i,s=0;
+    printf("Enter the size of array");
+    scanf("%d",&n);
+    int num[n];
+    printf("\n Enter %d elements",n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&num[i]);
+        s=s+num[i];
+    }
+    printf("\n sum=%d",s);
+}
+
+Process:
+Step 1: Declare variables 'n' (array size), 'i' (loop index), 
+        and initialize 's' to 0 (to accumulate the sum)[cite: 14].
+
+Step 2: Prompt the user to enter the array size and read 'n'[cite: 14]:
+        scanf("%d", &n);[cite: 14]
+
+Step 3: Declare a Variable Length Array (VLA) of size 'n'[cite: 14]:
+        int num[n];[cite: 14]
+
+Step 4: Use a single for loop running from i = 0 to i < n to perform 
+        both input and summation simultaneously[cite: 14]:
+        for(i = 0; i < n; i++)[cite: 14]
+        {
+            scanf("%d", &num[i]);[cite: 14]
+            s = s + num[i];[cite: 14]
+        }
+        → In each pass, an element is read into num[i] and immediately 
+          added to 's'[cite: 14].
+
+Step 5: Example trace for n = 5 with inputs 10, 20, 30, 40, 50:
+        - Initial: s = 0[cite: 14]
+        - i = 0: reads 10 → s = 0 + 10 = 10[cite: 14]
+        - i = 1: reads 20 → s = 10 + 20 = 30[cite: 14]
+        - i = 2: reads 30 → s = 30 + 30 = 60[cite: 14]
+        - i = 3: reads 40 → s = 60 + 40 = 100[cite: 14]
+        - i = 4: reads 50 → s = 100 + 50 = 150[cite: 14]
+        - Loop ends when i becomes 5[cite: 14].
+
+Step 6: Print the total sum:
+        printf("\n sum=%d", s);[cite: 14]
+
+Output:
+Enter the size of array 5
+
+ Enter 5 elements
+10
+20
+30
+40
+50
+
+ sum=150
+
+Notes:
+============================================================
+SINGLE-LOOP OPTIMIZATION LOGIC:
+============================================================
+
+1. Combining Loops:
+   - Unlike the two-loop version where elements are first scanned 
+     and then traversed again in a second loop, this version merges 
+     both operations into one loop[cite: 13, 14].
+
+2. Efficiency:
+   - Reduces the number of loop iterations across the array from 
+     2 * n to n, completing the task in a single pass[cite: 13, 14].
+
+3. Immediate Accumulation:
+   - Each element 'num[i]' is added to 's' right after it is scanned 
+     from the input buffer[cite: 14].
+
+
+Program3: Write a C program to take input of an integer array and find the largest and smallest elements without using any sorting
+
+SourceCode:
+#include <stdio.h>
+int main() {
+    int n, i;
+    printf("Enter number of elements: ");
+    scanf("%d",&n);
+    int arr[n];
+    printf("Enter %d elements:\n",n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    int large = arr[0];
+    int small = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > large) {
+            large = arr[i];
+        }
+        if (arr[i] < small) {
+            small = arr[i];
+        }
+    }
+    printf("Largest element = %d\n", large);
+    printf("Smallest element = %d\n", small);
+    return 0;
+}
+
+Process:
+Step 1: Declare variables 'n' (to hold the size of the array) 
+        and 'i' (for loop indexing)[cite: 15].
+
+Step 2: Take the total number of elements as input – stored in 'n'[cite: 15].
+
+Step 3: Declare a Variable Length Array (VLA) of size 'n':
+        int arr[n];[cite: 15]
+
+Step 4: Use a for loop to read 'n' integer elements into the array:
+        for (i = 0; i < n; i++)[cite: 15]
+        {
+            scanf("%d", &arr[i]);[cite: 15]
+        }
+
+Step 5: Initialize 'large' and 'small' with the first array element:
+        int large = arr[0];[cite: 15]
+        int small = arr[0];[cite: 15]
+        → Setting both to arr[0] provides an accurate baseline 
+          for all subsequent comparisons[cite: 15].
+
+Step 6: Traverse the remaining elements from index 1 to n - 1:
+        for (int i = 1; i < n; i++)[cite: 15]
+
+        - Check for a larger element:
+          if (arr[i] > large) → large = arr[i];[cite: 15]
+
+        - Check for a smaller element:
+          if (arr[i] < small) → small = arr[i];[cite: 15]
+
+Step 7: Example trace for arr = {10, 4, 32, 43, 24} (n = 5)[cite: 15]:
+        - Initial: large = 10, small = 10[cite: 15]
+
+        - i = 1 (arr[1] = 4):
+          4 > 10 (False)
+          4 < 10 (True) → small = 4[cite: 15]
+
+        - i = 2 (arr[2] = 32):
+          32 > 10 (True) → large = 32
+          32 < 4  (False)
+
+        - i = 3 (arr[3] = 43):
+          43 > 32 (True) → large = 43[cite: 15]
+          43 < 4  (False)
+
+        - i = 4 (arr[4] = 24):
+          24 > 43 (False)
+          24 < 4  (False)
+
+        Loop terminates at i = 5[cite: 15].
+        Final results: large = 43, small = 4[cite: 15].
+
+Step 8: Output the final results:
+        printf("Largest element = %d\n", large);[cite: 15]
+        printf("Smallest element = %d\n", small);[cite: 15]
+
+Output:
+Enter number of elements: 5
+Enter 5 elements:
+10 4 32 43 24
+Largest element = 43
+Smallest element = 4
+
+Notes:
+============================================================
+MIN/MAX WITHOUT SORTING LOGIC:
+============================================================
+
+1. Avoid Sorting Overhead:
+   - Sorting an array takes O(n log n) or O(n^2) time.
+   - Finding min and max via linear scan takes only O(n) time, 
+     visiting each element exactly once.
+
+2. Correct Baseline Initialization:
+   - Always initialize 'large' and 'small' to arr[0] rather than 
+     0 or arbitrary constants[cite: 15].
+   - If an array contains only negative numbers (e.g., -5, -12, -3), 
+     initializing 'large = 0' would give an incorrect answer (0). 
+     Using arr[0] ensures correctness for all integer values.
+
+3. Loop Range:
+   - Since arr[0] is already captured as the initial value, the comparison 
+     loop starts from index 1 (i = 1 to n - 1), saving one redundant check[cite: 15].
+
+
+Program4: Write a C program to take input of an integer array and print the second largest element without using any sorting
+
+SourceCode:
+#include <stdio.h>
+#include<limits.h>
+int main()
+{
+    int n,i,max,s_max;
+    printf("enter size of array :");
+    scanf("%d",&n);
+    int a[n];
+    for(i=0;i<n;i++)
+    {
+        printf("enter element %d :",(i+1));
+        scanf("%d",&a[i]);
+    }
+    max=INT_MIN,s_max=INT_MIN;
+    for(i=0;i<n;i++)
+    {
+        if(max<a[i])
+        {
+            s_max=max;
+            max=a[i];
+        }
+        else if(s_max<a[i] && s_max!=max)
+        {
+            s_max=a[i];
+        }
+    }
+    printf("second largest =%d",s_max);
+}
+
+Process:
+Step 1: Include <limits.h> to use the macro constant 'INT_MIN'[cite: 16].
+        Declare variables 'n' (array size), 'i' (loop index), 
+        'max' (largest element), and 's_max' (second largest element)[cite: 16].
+
+Step 2: Read the size of the array into 'n' and allocate array 'a[n]'[cite: 16].
+
+Step 3: Read 'n' elements into the array using a for loop from index 0 to n - 1[cite: 16]:
+        for(i = 0; i < n; i++)[cite: 16]
+        {
+            printf("enter element %d :", (i + 1));[cite: 16]
+            scanf("%d", &a[i]);[cite: 16]
+        }
+
+Step 4: Initialize both 'max' and 's_max' to INT_MIN (the minimum possible 
+        integer value in C) to ensure comparisons work correctly even with 
+        negative values[cite: 16]:
+        max = INT_MIN, s_max = INT_MIN;[cite: 16]
+
+Step 5: Iterate through the array to find the largest and second largest elements[cite: 16]:
+        for(i = 0; i < n; i++)[cite: 16]
+
+        - Case 1: If current element is greater than 'max'[cite: 16]:
+          if (max < a[i])[cite: 16]
+          → Old 'max' is demoted to 's_max' (s_max = max)[cite: 16].
+          → 'max' is updated with the new highest value (max = a[i])[cite: 16].
+
+        - Case 2: If current element is smaller than 'max' but greater than 's_max'[cite: 16]:
+          else if (s_max < a[i] && s_max != max)[cite: 16]
+          → Update 's_max' with current element (s_max = a[i])[cite: 16].
+
+Step 6: Example trace for a = {12, 35, 1, 10, 34} (n = 5):
+        - Initial: max = INT_MIN, s_max = INT_MIN[cite: 16]
+
+        - i = 0 (a[0] = 12):
+          12 > INT_MIN → s_max = INT_MIN, max = 12[cite: 16]
+
+        - i = 1 (a[1] = 35):
+          35 > 12 → s_max = 12, max = 35[cite: 16]
+
+        - i = 2 (a[2] = 1):
+          1 > 35 (False)
+          1 > 12 (False) → No change
+
+        - i = 3 (a[3] = 10):
+          10 > 35 (False)
+          10 > 12 (False) → No change
+
+        - i = 4 (a[4] = 34):
+          34 > 35 (False)
+          34 > 12 (True) → s_max = 34[cite: 16]
+
+        Loop terminates at i = 5[cite: 16].
+        Final results: max = 35, s_max = 34.
+
+Step 7: Print the second largest element[cite: 16]:
+        printf("second largest =%d", s_max);[cite: 16]
+
+Output:
+enter size of array :5
+enter element 1 :12
+enter element 2 :35
+enter element 3 :1
+enter element 4 :10
+enter element 5 :34
+second largest =34
+
+Notes:
+============================================================
+SECOND LARGEST ELEMENT LOGIC:
+============================================================
+
+1. Single Pass Efficiency:
+   - Finds the second largest element in O(n) linear time without 
+     the overhead of sorting algorithms (which take O(n log n) or O(n^2)).
+
+2. Role of INT_MIN (<limits.h>):
+   - Initializing 'max' and 's_max' to INT_MIN ensures the algorithm 
+     functions properly even if the user enters negative numbers[cite: 16].
+
+3. Update Mechanism:
+   - Whenever a new strictly larger number is encountered, the previous 
+     largest value shifts down into 's_max' before 'max' takes the new value[cite: 16].
+   - If a number is not larger than 'max' but beats 's_max', only 's_max' 
+     is replaced[cite: 16].
