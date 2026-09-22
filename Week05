@@ -41,61 +41,63 @@ void main()
 }
 
 Process:
-Step 1: Take a positive integer as input — stored in 'n'.
-'c' starts at 0 (to count the total number of digits),
-'s' starts at 0 (to accumulate the sum of powered digits),
-'rem' will temporarily hold each extracted digit,
-'p' will store the power calculation for each digit,
-and 'temp' is used to preserve the original value of 'n'.
+Step 1: Take a positive integer as input – stored in 'n'[cite: 1].
+        'c' starts at 0 to count the total number of digits[cite: 1].
+        's' starts at 0 to store the sum of powered digits[cite: 1].
+        'temp' is assigned the value of 'n' to preserve the input[cite: 1].
 
-Step 2: Calculate the total number of digits using a while loop:
-temp = n;
-while (temp != 0)
-{
-c++;
-temp = temp / 10;
-}
-→ Repeatedly divides 'temp' by 10 to strip digits until
-temp reaches 0, incrementing 'c' at each step to count
-the total digits.
+Step 2: Use a while loop to count the total digits:
+        while (temp != 0)[cite: 1]
+        {
+            c++;[cite: 1]
+            temp = temp / 10;[cite: 1]
+        }
+        → Strips digits one by one by dividing by 10[cite: 1],
+          incrementing 'c' on each pass until 'temp' becomes 0[cite: 1].
 
-Step 3: Reset 'temp' to 'n' and calculate the sum of each digit
-raised to the power of the total digit count (c):
-temp = n;
-while (temp != 0)
-{
-rem = temp % 10;        // extract the last digit
-p = 1;
-for (i = 1; i <= c; i++)
-{
-p = p * rem;        // calculate rem raised to power c
-}
-s = s + p;              // add the result to running sum 's'
-temp = temp / 10;       // remove the last digit from temp
-}
+Step 3: Reset 'temp = n' and process each digit to find its power[cite: 1]:
+        while (temp != 0)[cite: 1]
 
-Step 4: Example trace for n = 153:
-Phase 1 - Counting digits (temp = 153, c = 0):
-temp=153 → c=1, temp=15
-temp=15  → c=2, temp=1
-temp=1   → c=3, temp=0
-Loop stops when temp becomes 0. Total digits: c = 3.
+        - Extract the last digit:
+          → rem = temp % 10[cite: 1]
 
-```
-    Phase 2 - Sum of powers (temp = 153, s = 0, c = 3)[cite: 1]:
-    temp=153 → rem=3, p=3*3*3=27,   s=0+27=27,    temp=15[cite: 1]
-    temp=15  → rem=5, p=5*5*5=125,  s=27+125=152, temp=1[cite: 1]
-    temp=1   → rem=1, p=1*1*1=1,    s=152+1=153,  temp=0[cite: 1]
-    Loop stops when temp becomes 0[cite: 1].
+        - Compute rem raised to the power of c (p = rem^c):
+          p = 1;[cite: 1]
+          for (i = 1; i <= c; i++)[cite: 1]
+          {
+              p = p * rem;[cite: 1]
+          }
 
-```
+        - Add power result to 's' and drop the last digit:
+          → s = s + p[cite: 1]
+          → temp = temp / 10[cite: 1]
 
-Step 5: Check condition:
-if (n == s)
-→ If the original number equals the sum of its powered
-digits, print "yes".
-else
-→ Otherwise, print "no".
+Step 4: Example trace for n = 153 (c = 3)[cite: 1]:
+
+        Pass 1:
+        temp = 153 → rem = 3[cite: 1]
+        → p = 3 * 3 * 3 = 27[cite: 1]
+        → s = 0 + 27 = 27[cite: 1]
+        → temp becomes 15[cite: 1]
+
+        Pass 2:
+        temp = 15  → rem = 5[cite: 1]
+        → p = 5 * 5 * 5 = 125[cite: 1]
+        → s = 27 + 125 = 152[cite: 1]
+        → temp becomes 1[cite: 1]
+
+        Pass 3:
+        temp = 1   → rem = 1[cite: 1]
+        → p = 1 * 1 * 1 = 1[cite: 1]
+        → s = 152 + 1 = 153[cite: 1]
+        → temp becomes 0 (loop ends)[cite: 1]
+
+Step 5: Check if the sum of powered digits matches original number:
+        if (n == s)[cite: 1]
+        → Print "yes"[cite: 1]
+
+        else[cite: 1]
+        → Print "no"[cite: 1]
 
 Key idea: An Armstrong number is a number equal to the sum of its own
 digits each raised to the power of the number of digits. The program
@@ -118,3 +120,4 @@ yes
 Input:  123
 Output: Enter any positive integer: 123
 no
+
