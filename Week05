@@ -121,3 +121,188 @@ Input:  123
 Output: Enter any positive integer: 123
 no
 
+
+Program2: Write a program to identify whether a user-given positive integer is a Krishnamurthy number or not
+
+SourceCode:
+#include <stdio.h>
+int main()
+{
+    int n, temp, digit, fact, sum = 0, i;
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+    temp = n;
+    for (; temp > 0; temp = temp / 10)
+    {
+        digit = temp % 10;
+        fact = 1;
+
+        for (i = 1; i <= digit; i++)
+        {
+            fact = fact * i;
+        }
+
+        sum = sum + fact;
+    }
+    if (sum == n)
+        printf("%d is a Krishnamurthy number.", n);
+    else
+        printf("%d is not a Krishnamurthy number.", n);
+    return 0;
+}
+
+Process:
+Step 1: Take a positive integer as input – stored in 'n'[cite: 2].
+        'sum' starts at 0 to store the total sum of factorials[cite: 2].
+        'temp' is assigned the value of 'n' to extract digits 
+        without changing the original number[cite: 2].
+
+Step 2: Use a for loop to process each digit until 'temp' becomes 0[cite: 2]:
+        for (; temp > 0; temp = temp / 10)[cite: 2]
+
+        - Extract the last digit:
+          → digit = temp % 10[cite: 2]
+
+        - Reset 'fact' to 1 for the current digit:
+          → fact = 1[cite: 2]
+
+Step 3: Calculate the factorial of the extracted digit:
+        for (i = 1; i <= digit; i++)[cite: 2]
+        {
+            fact = fact * i;[cite: 2]
+        }
+
+        - Add the computed factorial to 'sum':
+          → sum = sum + fact[cite: 2]
+
+Step 4: Example trace for n = 145[cite: 2]:
+
+        Pass 1:
+        temp = 145 → digit = 5[cite: 2]
+        → fact = 5! = 120
+        → sum = 0 + 120 = 120
+        → temp becomes 14[cite: 2]
+
+        Pass 2:
+        temp = 14  → digit = 4[cite: 2]
+        → fact = 4! = 24
+        → sum = 120 + 24 = 144
+        → temp becomes 1[cite: 2]
+
+        Pass 3:
+        temp = 1   → digit = 1[cite: 2]
+        → fact = 1! = 1
+        → sum = 144 + 1 = 145
+        → temp becomes 0 (loop ends)[cite: 2]
+
+Step 5: Check if the accumulated sum equals the original number:
+        if (sum == n)[cite: 2]
+        → Print "%d is a Krishnamurthy number."[cite: 2]
+
+        else[cite: 2]
+        → Print "%d is not a Krishnamurthy number."[cite: 2]
+
+Example (Test Runs):
+Input:  145[cite: 2]
+Output: Enter a positive integer: 145[cite: 2]
+145 is a Krishnamurthy number.[cite: 2]
+
+Input:  40585
+Output: Enter a positive integer: 40585
+40585 is a Krishnamurthy number.
+
+Input:  1
+Output: Enter a positive integer: 1
+1 is a Krishnamurthy number.
+
+Input:  123
+Output: Enter a positive integer: 123
+123 is not a Krishnamurthy number.
+
+
+Program3: Write a program to take input of a positive integer and identify whether the integer is a palindrome or not
+
+SourceCode:
+#include <stdio.h>
+
+void main()
+{
+    int n, temp, r, rev = 0;
+    printf("enter a positive integer:");
+    scanf("%d", &n);
+    temp = n;
+    while (n > 0)
+    {
+        r = n % 10;
+        rev = rev * 10 + r;
+        n = n / 10;
+    }
+    if (rev == temp)
+        printf("palindrome number");
+    else
+        printf("not a palindrome number");
+}
+
+Process:
+Step 1: Take a positive integer as input – stored in 'n'.
+        'rev' starts at 0 to hold the reversed number.
+        'temp' stores the original value of 'n' so it can be 
+        compared later after 'n' reduces to 0.
+        'r' temporarily holds each extracted digit.
+
+Step 2: Use a while loop to reverse the digits until 'n' becomes 0:
+        while (n > 0)
+
+        - Extract the last digit:
+          → r = n % 10
+
+        - Shift reversed value one decimal place left and add digit:
+          → rev = rev * 10 + r
+
+        - Remove the last digit from 'n':
+          → n = n / 10
+
+Step 3: Example trace for n = 121:
+
+        Pass 1:
+        n = 121 → r = 121 % 10 = 1
+        → rev = 0 * 10 + 1 = 1
+        → n becomes 121 / 10 = 12
+
+        Pass 2:
+        n = 12  → r = 12 % 10 = 2
+        → rev = 1 * 10 + 2 = 12
+        → n becomes 12 / 10 = 1
+
+        Pass 3:
+        n = 1   → r = 1 % 10 = 1
+        → rev = 12 * 10 + 1 = 121
+        → n becomes 1 / 10 = 0 (loop ends)
+
+Step 4: Check if the reversed number equals the original number:
+        if (rev == temp)
+        → Print "palindrome number"
+
+        else
+        → Print "not a palindrome number"
+
+Key idea: A palindrome number reads the same backward as forward (such as 121 or 1331). 
+The program preserves the original value in `temp`, reverses `n` mathematically using modulo (`% 10`) and division (`/ 10`), 
+and tests if `rev == temp`.
+
+Example (Test Runs):
+Input:  121
+Output: enter a positive integer:121
+palindrome number
+
+Input:  65
+Output: enter a positive integer:65
+not a palindrome number
+
+Input:  1331
+Output: enter a positive integer:1331
+palindrome number
+
+Input:  450
+Output: enter a positive integer:450
+not a palindrome number
