@@ -1,0 +1,549 @@
+Program1: Write a C program to print Pascal's Triangle up to a user-given number of rows
+
+SourceCode:
+#include <stdio.h>
+
+int main()
+{
+    int n, i, j, val;
+
+    printf("Enter number of rows: ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++)
+    {
+        for (j = 1; j < n - i; j++)
+        {
+            printf(" ");
+        }
+
+        val = 1;
+        for (j = 0; j <= i; j++)
+        {
+            printf("%d ", val);
+            val = val * (i - j) / (j + 1);
+        }
+
+        printf("\n");
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Take the number of rows as input – stored in 'n'.
+        'i' tracks the row index (0 to n - 1).
+        'j' controls leading spaces and column elements.
+        'val' computes the binomial coefficient for each position.
+
+Step 2: The outer loop controls each row from 0 up to n - 1:
+        for (i = 0; i < n; i++)
+
+Step 3: The first inner loop prints spaces to center the pyramid:
+        for (j = 1; j < n - i; j++)
+            printf(" ");
+
+Step 4: The second inner loop calculates and prints the row values:
+        - Every row starts with val = 1 (since nC0 = 1).
+        - For subsequent columns, calculate the next term using:
+          val = val * (i - j) / (j + 1);
+
+Step 5: Move to the next line:
+        printf("\n");
+
+Step 6: Example trace for n = 4:
+
+        Row 0 (i = 0):
+        - Spaces = 3
+        - Elements: 1
+        - Output: "   1 "
+
+        Row 1 (i = 1):
+        - Spaces = 2
+        - Elements: 1, (1 * 1 / 1) = 1
+        - Output: "  1 1 "
+
+        Row 2 (i = 2):
+        - Spaces = 1
+        - Elements: 1, (1 * 2 / 1) = 2, (2 * 1 / 2) = 1
+        - Output: " 1 2 1 "
+
+        Row 3 (i = 3):
+        - Spaces = 0
+        - Elements: 1, (1 * 3 / 1) = 3, (3 * 2 / 2) = 3, (3 * 1 / 3) = 1
+        - Output: "1 3 3 1 "
+
+Output:
+Enter number of rows: 4
+   1 
+  1 1 
+ 1 2 1 
+1 3 3 1 
+
+Notes:
+============================================================
+PASCAL'S TRIANGLE FORMULAS:
+============================================================
+
+1. Combinations Representation:
+   - Each entry at row 'i' and column 'j' corresponds to:
+     C(i, j) = i! / (j! * (i - j)!)
+
+2. Next Term Recurrence Relation:
+   - Instead of computing full factorials every time, calculate
+     successive elements in the row iteratively:
+     C(i, j + 1) = C(i, j) * (i - j) / (j + 1)
+
+
+Program2: Write a C program to print Floyd's Triangle of numbers based on a user-given number of rows
+
+SourceCode:
+#include <stdio.h>
+
+int main()
+{
+    int n, i, j, count = 1;
+
+    printf("Enter number of rows: ");
+    scanf("%d", &n);
+
+    for (i = 1; i <= n; i++)
+    {
+        for (j = 1; j <= i; j++)
+        {
+            printf("%d ", count);
+            count++;
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Take the number of rows as input – stored in 'n'.
+        'count' is initialized to 1 and increments consecutively.
+        'i' controls the current row (1 to n).
+        'j' controls the number of columns printed in row 'i'.
+
+Step 2: The outer loop runs for each row:
+        for (i = 1; i <= n; i++)
+
+Step 3: The inner loop runs from 1 to the current row index 'i':
+        for (j = 1; j <= i; j++)
+        - In row 1: runs 1 time
+        - In row 2: runs 2 times
+        - In row 3: runs 3 times
+        - In row 4: runs 4 times
+
+Step 4: Print 'count' and increment it after each print:
+        printf("%d ", count);
+        count++;
+
+Step 5: Move to the next row:
+        printf("\n");
+
+Step 6: Example trace for n = 4:
+
+        Row 1 (i = 1):
+        - j = 1: prints 1 (count becomes 2)
+        - Output: "1 "
+
+        Row 2 (i = 2):
+        - j = 1: prints 2 (count becomes 3)
+        - j = 2: prints 3 (count becomes 4)
+        - Output: "2 3 "
+
+        Row 3 (i = 3):
+        - j = 1: prints 4 (count becomes 5)
+        - j = 2: prints 5 (count becomes 6)
+        - j = 3: prints 6 (count becomes 7)
+        - Output: "4 5 6 "
+
+        Row 4 (i = 4):
+        - j = 1: prints 7  (count becomes 8)
+        - j = 2: prints 8  (count becomes 9)
+        - j = 3: prints 9  (count becomes 10)
+        - j = 4: prints 10 (count becomes 11)
+        - Output: "7 8 9 10 "
+
+Output:
+Enter number of rows: 4
+1 
+2 3 
+4 5 6 
+7 8 9 10 
+
+Notes:
+============================================================
+FLOYD'S TRIANGLE LOGIC:
+============================================================
+
+1. Continuous Counting:
+   - Unlike triangular patterns where counting resets per line,
+     Floyd's Triangle maintains a continuous global counter 'count'.
+
+2. Row Size:
+   - Row 'i' always contains exactly 'i' numbers.
+   - The total number of integers printed for 'n' rows equals:
+     n * (n + 1) / 2
+
+
+Program3: Write a C program to print a hollow square pattern of stars of size $n \times n$
+
+SourceCode:
+#include <stdio.h>
+
+int main()
+{
+    int n, i, j;
+
+    printf("Sample input\n");
+    scanf("%d", &n);
+
+    for (i = 1; i <= n; i++)
+    {
+        for (j = 1; j <= n; j++)
+        {
+            if (i == 1 || i == n || j == 1 || j == n)
+            {
+                printf("*");
+            }
+            else
+            {
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Take the square size as input – stored in 'n'[cite: 12].
+        'i' controls the outer loop (rows 1 to n).
+        'j' controls the inner loop (columns 1 to n).
+
+Step 2: Loop through every coordinate (i, j) of the n x n grid:
+        for (i = 1; i <= n; i++)
+        {
+            for (j = 1; j <= n; j++)
+
+Step 3: Check if the coordinate falls on any of the four borders:
+        if (i == 1 || i == n || j == 1 || j == n)[cite: 12]
+        - i == 1 : Top border[cite: 12]
+        - i == n : Bottom border[cite: 12]
+        - j == 1 : Left border[cite: 12]
+        - j == n : Right border[cite: 12]
+
+Step 4: If on the boundary, print a star "*"[cite: 12].
+        Otherwise, print a blank space " "[cite: 12].
+
+Step 5: Move to the next line:
+        printf("\n");
+
+Step 6: Example trace for n = 5[cite: 12]:
+
+        Row 1 (i = 1):
+        - Boundary condition met for all j (1 to 5) → prints "*****"[cite: 12]
+
+        Rows 2, 3, 4 (i = 2, 3, 4):
+        - j = 1 (left boundary)  → prints "*"[cite: 12]
+        - j = 2, 3, 4 (interior) → prints " "[cite: 12]
+        - j = 5 (right boundary) → prints "*"[cite: 12]
+        - Output: "*   *"[cite: 12]
+
+        Row 5 (i = 5):
+        - Boundary condition met for all j (1 to 5) → prints "*****"[cite: 12]
+
+Output:
+Sample input
+5
+*****
+*   *
+*   *
+*   *
+*****
+
+Notes:
+============================================================
+HOLLOW SQUARE LOGIC:
+============================================================
+
+1. Boundary-Only Condition:
+   - Stars appear only along the perimeter of the grid:
+     * First row: i == 1[cite: 12]
+     * Last row:  i == n[cite: 12]
+     * First col: j == 1[cite: 12]
+     * Last col:  j == n[cite: 12]
+   - All inner positions where 1 < i < n and 1 < j < n receive spaces[cite: 12].
+
+
+Program4: Write a C program to find and print the Nth prime number based on user input
+
+SourceCode:
+#include <stdio.h>
+
+int main()
+{
+    int n, count = 0, num = 2, i, isPrime;
+
+    printf("Enter n: ");
+    scanf("%d", &n);
+
+    while (count < n)
+    {
+        isPrime = 1;
+
+        for (i = 2; i * i <= num; i++)
+        {
+            if (num % i == 0)
+            {
+                isPrime = 0;
+                break;
+            }
+        }
+
+        if (isPrime == 1)
+        {
+            count++;
+        }
+
+        if (count == n)
+        {
+            printf("%d\n", num);
+            break;
+        }
+
+        num++;
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Take the rank 'n' as input – stored in 'n'.
+        'count' starts at 0 to track how many primes have been found.
+        'num' starts at 2 (the first prime number) to test candidates.
+        'isPrime' acts as a flag (1 = prime, 0 = not prime).
+
+Step 2: Use an outer while loop to continue until 'count' reaches 'n':
+        while (count < n)
+
+Step 3: Test whether the candidate 'num' is prime:
+        - Set isPrime = 1 initially.
+        - Run a for loop from i = 2 up to sqrt(num) (i * i <= num):
+            if (num % i == 0)
+            {
+                isPrime = 0;
+                break;
+            }
+        - If any divisor is found, isPrime is set to 0 and the check stops.
+
+Step 4: Update prime counter:
+        - If isPrime remains 1, increment count:
+          count++;
+
+Step 5: Check if the Nth prime has been reached:
+        - If count == n:
+            printf("%d\n", num);
+            break out of the loop.
+        - Otherwise, increment num by 1 to test the next number:
+            num++;
+
+Step 6: Example trace for n = 5:
+
+        Candidate 2:
+        - Divisors test: none (loop doesn't run) → Prime
+        - count = 1
+
+        Candidate 3:
+        - Divisors test: none → Prime
+        - count = 2
+
+        Candidate 4:
+        - 4 % 2 == 0 → Not prime
+
+        Candidate 5:
+        - Divisors test: none → Prime
+        - count = 3
+
+        Candidate 6:
+        - 6 % 2 == 0 → Not prime
+
+        Candidate 7:
+        - Divisors test: none → Prime
+        - count = 4
+
+        Candidates 8, 9, 10:
+        - All have divisors → Not prime
+
+        Candidate 11:
+        - Divisors test: none → Prime
+        - count = 5 (count == n reached!)
+        - Prints 11 and stops.
+
+Output:
+Enter n: 5
+11
+
+Notes:
+============================================================
+NTH PRIME NUMBER LOGIC:
+============================================================
+
+1. Prime Definition:
+   - A prime number is an integer greater than 1 that has no 
+     positive divisors other than 1 and itself.
+
+2. Optimization with Square Root (i * i <= num):
+   - A number 'num' cannot have a factor greater than its square 
+     root without having a corresponding factor smaller than its 
+     square root.
+   - Checking up to (i * i <= num) reduces loop iterations from O(N) 
+     to O(sqrt(N)) for each candidate.
+
+3. Candidate Progression:
+   - 'num' increments one by one (2, 3, 4, 5, ...).
+   - 'count' only increments when a candidate passes the primality test.
+
+
+Program5: Write a C program to print a triangular pattern where each line prints the Fibonacci sequence starting from 0
+
+SourceCode:
+#include <stdio.h>
+
+int main()
+{
+    int n, i, j, a, b, c;
+
+    printf("Enter a no of line\n");
+    scanf("%d", &n);
+
+    for (i = 1; i <= n; i++)
+    {
+        a = 0;
+        b = 1;
+
+        for (j = 1; j <= i; j++)
+        {
+            if (j == 1)
+            {
+                printf("%d", a);
+            }
+            else if (j == 2)
+            {
+                printf("%d", b);
+            }
+            else
+            {
+                c = a + b;
+                printf("%d", c);
+                a = b;
+                b = c;
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Take the number of lines as input – stored in 'n'.
+        'i' controls the outer loop (current row from 1 to n).
+        'j' controls the inner loop (number of terms printed in row 'i').
+        'a', 'b', and 'c' generate the Fibonacci series terms.
+
+Step 2: The outer loop runs from 1 up to 'n':
+        for (i = 1; i <= n; i++)
+        → Controls row progression.
+
+Step 3: Reset the Fibonacci terms at the start of every row:
+        a = 0;
+        b = 1;
+        → Ensures every row begins cleanly with the start of the sequence.
+
+Step 4: The inner loop runs from j = 1 to j = i:
+        for (j = 1; j <= i; j++)
+
+        - If j == 1:
+          → Print the first Fibonacci term: '0' (stored in 'a')
+
+        - If j == 2:
+          → Print the second Fibonacci term: '1' (stored in 'b')
+
+        - If j > 2:
+          → Compute the next Fibonacci term: c = a + b
+          → Print 'c'
+          → Shift variables for the next step: a = b, b = c
+
+Step 5: Move to the next line:
+        printf("\n");
+        → Advances the cursor to the next line after completing the row.
+
+Step 6: Example trace for n = 5:
+
+        Row 1 (i = 1):
+        - j = 1 → prints '0'
+        - Output: 0
+
+        Row 2 (i = 2):
+        - j = 1 → prints '0'
+        - j = 2 → prints '1'
+        - Output: 01
+
+        Row 3 (i = 3):
+        - j = 1 → prints '0'
+        - j = 2 → prints '1'
+        - j = 3 → c = 0 + 1 = 1, prints '1'
+        - Output: 011
+
+        Row 4 (i = 4):
+        - j = 1 → prints '0'
+        - j = 2 → prints '1'
+        - j = 3 → c = 1, prints '1'
+        - j = 4 → c = 1 + 1 = 2, prints '2'
+        - Output: 0112
+
+        Row 5 (i = 5):
+        - j = 1 → prints '0'
+        - j = 2 → prints '1'
+        - j = 3 → c = 1, prints '1'
+        - j = 4 → c = 2, prints '2'
+        - j = 5 → c = 1 + 2 = 3, prints '3'
+        - Output: 01123
+
+Output:
+Enter a no of line
+5
+0
+01
+011
+0112
+01123
+
+Notes:
+============================================================
+FIBONACCI TRIANGLE PATTERN LOGIC:
+============================================================
+
+1. Fibonacci Series Definition:
+   - Sequence: 0, 1, 1, 2, 3, 5, 8, 13, ...
+   - Each term after the first two is the sum of the preceding two terms:
+     F(n) = F(n-1) + F(n-2)
+
+2. Row Reset:
+   - Because every row restarts the series from 0, the variables
+     'a = 0' and 'b = 1' must be re-initialized inside the outer loop
+     before the inner loop begins.
+
+3. Triangle Constraint:
+   - Row 'i' always prints exactly 'i' Fibonacci numbers, so the inner
+     loop boundary is conditioned on 'j <= i'.
+
+------------------------------------------------------------------------------------------------------------------------
+
+BASIC PROGRAMMING QUESTIONS REGARDING TO C LANGUAGE
+in ExtraInfo file
