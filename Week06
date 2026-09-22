@@ -1,1 +1,914 @@
+Program1: Write a C program to print a $3 \times 3$ number square pattern where each row contains its row index number
+
+SourceCode:
+#include <stdio.h>
+
+int main()
+{
+    int i, j;
+
+    for (i = 1; i <= 3; i++)
+    {
+        for (j = 1; j <= 3; j++)
+        {
+            printf("%d", i);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Declare loop counter variables 'i' (for outer loop) 
+        and 'j' (for inner loop)[cite: 6].
+
+Step 2: The outer loop controls the rows (or lines)[cite: 6]:
+        for (i = 1; i <= 3; i++)[cite: 6]
+        → Runs 3 times, once for each row from 1 to 3[cite: 6].
+
+Step 3: The inner loop controls the columns (elements in each row)[cite: 6]:
+        for (j = 1; j <= 3; j++)[cite: 6]
+        → For every single iteration of the outer loop, the inner 
+          loop starts fresh from j = 1 and runs 3 times[cite: 6].
+
+Step 4: Print the current row number:
+        printf("%d", i);[cite: 6]
+        → Prints the current value of 'i' without a newline, 
+          repeating it across the columns of the row[cite: 6].
+
+Step 5: Move to the next row:
+        printf("\n");[cite: 6]
+        → Executed after the inner loop finishes all 3 columns, 
+          moving the cursor to a new line for the next row[cite: 6].
+
+Step 6: Example trace (Dry Run)[cite: 6]:
+
+        Row 1 (i = 1):
+        - j = 1: print '1'[cite: 6]
+        - j = 2: print '1'[cite: 6]
+        - j = 3: print '1'[cite: 6]
+        - inner loop terminates (j becomes 4)[cite: 6]
+        - printf("\n") moves to line 2[cite: 6]
+
+        Row 2 (i = 2):
+        - j resets to 1[cite: 6]
+        - j = 1: print '2'[cite: 6]
+        - j = 2: print '2'[cite: 6]
+        - j = 3: print '2'[cite: 6]
+        - inner loop terminates (j becomes 4)[cite: 6]
+        - printf("\n") moves to line 3[cite: 6]
+
+        Row 3 (i = 3):
+        - j resets to 1[cite: 6]
+        - j = 1: print '3'[cite: 6]
+        - j = 2: print '3'[cite: 6]
+        - j = 3: print '3'[cite: 6]
+        - inner loop terminates (j becomes 4)[cite: 6]
+        - printf("\n") moves to line 4[cite: 6]
+
+        Outer loop condition (i <= 3) becomes false when i = 4[cite: 6].
+
+Output:
+111
+222
+333
+
+### Notes
+**1. Structure of Nested Loops (Parent & Child Loops)**
+* **Outer / Parent Loop:** Responsible for rows or total lines (`row` or `line`).
+* **Inner / Child Loop:** Responsible for columns (`col`) inside the current row.
+* **Golden Rule:** *"For every satisfied condition of outer loop, inner loop always starts from beginning"*.
+
+**2. Flow of Nested Loops**
+1. **Outer loop initialization**.
+2. **Outer loop condition check**:
+* If `false` $\rightarrow$ Exit entire nested structure.
+* If `true` $\rightarrow$ Enter inner loop.
+3. **Inner loop initialization**.
+4. **Inner loop condition check**:
+* If `true` $\rightarrow$ Execute inner statements $\rightarrow$ Inner loop iteration (increment/decrement) 
+$\rightarrow$ Re-check inner condition.
+* If `false` $\rightarrow$ Exit inner loop $\rightarrow$ Execute outer loop statements (such as `printf("\n")`) 
+$\rightarrow$ Outer loop iteration $\rightarrow$ Re-check outer condition.
+
+**3. General Patterns Given in Notes**
+* **Outer Loop for $n$ lines:**
+* Ascending order: `for (i = 1; i <= n; i++)`
+* Descending order: `for (i = n; i >= 1; i--)`
+* **Square Pattern Blueprint ($n \times n$):**
+
+for (i = 1; i <= n; i++)
+{
+    for (j = 1; j <= n; j++)
+    {
+        // print pattern element
+    }
+}
+
+(Changes to the `printf` inside this blueprint generate different square patterns:)
+
+* If printing `i` $\rightarrow$ Row-wise numbers:
+1 1 1
+2 2 2
+3 3 3
+
+* If printing `j` $\rightarrow$ Column-wise numbers:
+1 2 3
+1 2 3
+1 2 3
+
+* If printing `*` $\rightarrow$ Star grid:
+* * *
+* * *
+* * *
+
+* **Triangular Patterns ($\Delta$ / $\nabla$):**
+For varying triangular shapes, the inner loop limits depend on the current outer row index `i` rather than a fixed $n$:
+* `1 to i` (Standard increasing triangle)
+* `i to 1` (Reverse count within row)
+* `i to n` (Decreasing upper triangle)
+* `n to i` (Reverse bounded triangle)
+
+
+Program2: Write a C program to print a right-angled triangular number pattern based on a user-given number of lines
+
+SourceCode:
+#include <stdio.h>
+
+int main()
+{
+    int n, i, j;
+
+    printf("Enter no of line\n");
+    scanf("%d", &n);
+
+    for (i = 1; i <= n; i++)
+    {
+        for (j = 1; j <= i; j++)
+        {
+            printf("%d", j);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Take the number of lines as input – stored in 'n'.
+        'i' controls the outer loop (current line or row).
+        'j' controls the inner loop (numbers printed across the columns).
+
+Step 2: The outer loop runs from line 1 up to 'n':
+        for (i = 1; i <= n; i++)
+        → Governs row progression, running once for every line.
+
+Step 3: The inner loop runs from 1 up to the current row index 'i':
+        for (j = 1; j <= i; j++)
+        → In row 1, it runs 1 time (j = 1).
+        → In row 2, it runs 2 times (j = 1 to 2).
+        → In row 3, it runs 3 times (j = 1 to 3).
+
+Step 4: Print the current column number:
+        printf("%d", j);
+        → Outputs the increasing sequence 1, 2, ... up to 'i'.
+
+Step 5: Move to the next line:
+        printf("\n");
+        → Advances the cursor after the inner loop finishes 
+          printing numbers for the current row.
+
+Step 6: Example trace for n = 3:
+
+        Row 1 (i = 1):
+        - Inner loop runs for j = 1 to 1:
+          print '1'
+        - printf("\n") moves to line 2
+
+        Row 2 (i = 2):
+        - Inner loop runs for j = 1 to 2:
+          print '1', then print '2' → "12"
+        - printf("\n") moves to line 3
+
+        Row 3 (i = 3):
+        - Inner loop runs for j = 1 to 3:
+          print '1', then '2', then '3' → "123"
+        - printf("\n") moves to line 4
+
+        Outer loop condition (i <= 3) becomes false when i = 4.
+
+Output:
+Enter no of line
+3
+1
+12
+123
+
+### Note
+
+* This follows the triangular pattern structure ($1 \text{ to } i$) where the inner loop's boundary depends directly 
+on the current outer loop value $i$.
+
+* Printing `j` creates increasing numbers across the row (`1`, `12`, `123`). If you replace `printf("%d", j);` with 
+`printf("%d", i);`, it would instead print repeated row values (`1`, `22`, `333`).
+
+
+Program3: Write a C program to print an inverted right-angled triangular pattern where each line prints its line number repeatedly
+
+SourceCode:
+#include <stdio.h>
+
+int main()
+{
+    int n, i, j;
+
+    printf("Enter no of line\n");
+    scanf("%d", &n);
+
+    for (i = n; i >= 1; i--)
+    {
+        for (j = 1; j <= i; j++)
+        {
+            printf("%d", i);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Take the number of lines as input – stored in 'n'.
+        'i' controls the outer loop (current row value and row count).
+        'j' controls the inner loop (number of columns per row).
+
+Step 2: The outer loop runs in reverse from 'n' down to 1:
+        for (i = n; i >= 1; i--)
+        → Starts at the highest row number and decrements by 1 
+          after completing each line.
+
+Step 3: The inner loop runs from 1 up to the current row value 'i':
+        for (j = 1; j <= i; j++)
+        → When i = 5, it prints 5 times.
+        → When i = 4, it prints 4 times.
+        → When i = 3, it prints 3 times.
+        → When i = 2, it prints 2 times.
+        → When i = 1, it prints 1 time.
+
+Step 4: Print the current row value:
+        printf("%d", i);
+        → Outputs the value of 'i' repeatedly across the columns.
+
+Step 5: Move to the next line:
+        printf("\n");
+        → Advances the cursor to a new line after the inner loop 
+          finishes printing all elements for the current row.
+
+Step 6: Example trace for n = 5:
+
+        Row 1 (i = 5):
+        - Inner loop runs for j = 1 to 5:
+          prints '5' five times → "55555"
+        - printf("\n") moves to line 2
+
+        Row 2 (i = 4):
+        - Inner loop runs for j = 1 to 4:
+          prints '4' four times → "4444"
+        - printf("\n") moves to line 3
+
+        Row 3 (i = 3):
+        - Inner loop runs for j = 1 to 3:
+          prints '3' three times → "333"
+        - printf("\n") moves to line 4
+
+        Row 4 (i = 2):
+        - Inner loop runs for j = 1 to 2:
+          prints '2' two times → "22"
+        - printf("\n") moves to line 5
+
+        Row 5 (i = 1):
+        - Inner loop runs for j = 1 to 1:
+          prints '1' one time → "1"
+        - printf("\n") moves to line 6
+
+        Outer loop condition (i >= 1) becomes false when i = 0.
+
+Output:
+Enter no of line
+5
+55555
+4444
+333
+22
+1
+
+### Note
+
+* This follows the inverted triangle rule ($\nabla$) where the outer loop starts from $n$ and counts downward 
+(`for (i = n; i >= 1; i--)`).
+
+* The inner loop boundary `j <= i` ensures that the number of elements printed decreases row by row.
+
+* Printing `i` produces repeated values of the current row index across each line (e.g., `55555`, `4444`). 
+If `j` were printed instead, the rows would count upwards from 1 (e.g., `12345`, `1234`).
+
+
+Program4: Write a C program to perform and display the results of Bitwise AND (`&`), Bitwise OR (`|`), and Bitwise XOR (`^`) operations on two given integers
+
+SourceCode:
+#include <stdio.h>
+
+void main()
+{
+    int a = 10, b = 7;
+    printf("%d %d %d", a & b, a | b, a ^ b);
+}
+
+Process:
+Step 1: Declare and initialize two integer variables:
+        'a' = 10, 'b' = 7.
+
+Step 2: Convert both decimal numbers to their 4-bit binary representations 
+        using binary positional weights (2^3=8, 2^2=4, 2^1=2, 2^0=1):
+        - a = 10  →  8 + 2      →  1 0 1 0
+        - b = 7   →  4 + 2 + 1  →  0 1 1 1
+
+Step 3: Apply Bitwise AND (&):
+        Rule: Result bit is 1 ONLY IF BOTH corresponding bits are 1; otherwise 0.
+          a = 1 0 1 0
+          b = 0 1 1 1
+        -------------
+      a&b = 0 0 1 0  → (0*8 + 0*4 + 1*2 + 0*1) = 2
+
+Step 4: Apply Bitwise OR (|):
+        Rule: Result bit is 1 IF AT LEAST ONE corresponding bit is 1; 
+              0 only when both bits are 0.
+          a = 1 0 1 0
+          b = 0 1 1 1
+        -------------
+      a|b = 1 1 1 1  → (1*8 + 1*4 + 1*2 + 1*1) = 8 + 4 + 2 + 1 = 15
+
+Step 5: Apply Bitwise XOR (^):
+        Rule: Result bit is 1 IF BITS ARE DIFFERENT; 
+              0 if bits are identical (both 0 or both 1).
+          a = 1 0 1 0
+          b = 0 1 1 1
+        -------------
+      a^b = 1 1 0 1  → (1*8 + 1*4 + 0*2 + 1*1) = 8 + 4 + 1 = 13
+
+Step 6: Print the decimal equivalents of the evaluated bitwise results:
+        printf("%d %d %d", a & b, a | b, a ^ b);
+        → Outputs: 2 15 13
+
+Output:
+2 15 13
+
+Notes:
+============================================================
+1. TRUTH TABLE FOR BINARY BITWISE OPERATORS (as shown in notebook):
+============================================================
+
+   Bitwise AND (&)       Bitwise OR (|)        Bitwise XOR (^)
+   -----------------     -----------------     -----------------
+   0 & 0 = 0             0 | 0 = 0             0 ^ 0 = 0
+   0 & 1 = 0             0 | 1 = 1             0 ^ 1 = 1
+   1 & 0 = 0             1 | 0 = 1             1 ^ 0 = 1
+   1 & 1 = 1             1 | 1 = 1             1 ^ 1 = 0
+
+   Summary of Rules:
+   - AND (&) : 1 only if BOTH bits are 1[cite: 8].
+   - OR  (|) : 1 if AT LEAST ONE bit is 1[cite: 8].
+   - XOR (^) : 1 if BOTH bits are DIFFERENT, 0 if SAME[cite: 8].
+
+============================================================
+2. BITWISE SHIFT OPERATORS & SHORTCUT FORMULAS:
+============================================================
+
+   A. Bitwise Left Shift (<<):
+      - Syntax: a << b[cite: 8]
+      - Formula: a * (2^b)[cite: 8]
+      - Meaning: Shifts all bits of 'a' to the left by 'b' places, 
+                 filling empty rightmost bits with 0.
+      - Example: 10 << 2 = 10 * (2^2) = 10 * 4 = 40
+
+   B. Bitwise Right Shift (>>):
+      - Syntax: a >> b[cite: 8]
+      - Formula: a / (2^b)[cite: 8]
+      - Meaning: Shifts all bits of 'a' to the right by 'b' places, 
+                 discarding the bits that fall off.
+      - Example: 10 >> 1 = 10 / (2^1) = 10 / 2 = 5
+
+
+Program5: Write a C program to print an inverted right-angled triangular pattern where each line counts down from the total number of lines
+
+SourceCode:c
+#include <stdio.h>
+
+int main()
+{
+    int n, i, j;
+
+    printf("Enter no of line\n");
+    scanf("%d", &n);
+
+    for (i = 1; i <= n; i++)
+    {
+        for (j = n; j >= i; j--)
+        {
+            printf("%d ", j);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Take the number of lines as input – stored in 'n'.
+        'i' controls the outer loop (row counter).
+        'j' controls the inner loop (numbers printed across the columns).
+
+Step 2: The outer loop runs from 1 up to 'n':
+        for (i = 1; i <= n; i++)
+        → Governs the row count, creating exactly 'n' lines.
+
+Step 3: The inner loop starts at 'n' and counts downward to 'i':
+        for (j = n; j >= i; j--)
+        → When i = 1: j runs 5 down to 1 (5 numbers: 5 4 3 2 1)
+        → When i = 2: j runs 5 down to 2 (4 numbers: 5 4 3 2)
+        → When i = 3: j runs 5 down to 3 (3 numbers: 5 4 3)
+        → When i = 4: j runs 5 down to 4 (2 numbers: 5 4)
+        → When i = 5: j runs 5 down to 5 (1 number: 5)
+
+Step 4: Print the current column value with a trailing space:
+        printf("%d ", j);
+        → Outputs numbers counting backwards starting from 'n'.
+
+Step 5: Move to the next line:
+        printf("\n");
+        → Advances the cursor after the inner loop finishes 
+          printing numbers for the current row.
+
+Step 6: Example trace for n = 5:
+
+        Row 1 (i = 1):
+        - Inner loop runs for j = 5 down to 1:
+          prints: 5 4 3 2 1 
+        - printf("\n") moves to line 2
+
+        Row 2 (i = 2):
+        - Inner loop runs for j = 5 down to 2:
+          prints: 5 4 3 2 
+        - printf("\n") moves to line 3
+
+        Row 3 (i = 3):
+        - Inner loop runs for j = 5 down to 3:
+          prints: 5 4 3 
+        - printf("\n") moves to line 4
+
+        Row 4 (i = 4):
+        - Inner loop runs for j = 5 down to 4:
+          prints: 5 4 
+        - printf("\n") moves to line 5
+
+        Row 5 (i = 5):
+        - Inner loop runs for j = 5 down to 5:
+          prints: 5 
+        - printf("\n") moves to line 6
+
+        Outer loop condition (i <= 5) becomes false when i = 6.
+
+Output:
+Enter no of line
+5 
+5 4 3 2 1 
+5 4 3 2 
+5 4 3 
+5 4 
+5 
+
+Notes:
+============================================================
+PATTERN LOGIC SUMMARY:
+============================================================
+
+1. Fixed Starting Point:
+   - Every single line starts printing from 'n' (here, 5).
+   - Therefore, the inner loop must initialize at: j = n
+
+2. Decreasing Count per Line:
+   - Line 1 stops at 1
+   - Line 2 stops at 2
+   - Line 3 stops at 3
+   - Line 4 stops at 4
+   - Line 5 stops at 5
+   - Notice the stopping condition matches the row counter 'i'.
+   - Therefore, the inner loop condition is: j >= i with j--
+
+
+Program: Write a C program to print an upright centered pyramid pattern of stars based on a user-given number of lines
+
+SourceCode:
+#include <stdio.h>
+
+int main()
+{
+    int n, i, j;
+    printf("Enter no of line\n");
+    scanf("%d", &n);
+
+    for (i = 1; i <= n; i++)
+    {
+        for (j = 1; j <= n - i; j++)
+            printf(" ");
+
+        for (j = 1; j <= 2 * i - 1; j++)
+            printf("*");
+
+        printf("\n");
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Take the number of lines as input – stored in 'n'[cite: 10].
+        'i' controls the outer loop (current row from 1 to n)[cite: 10].
+        'j' controls the inner loops (spaces and stars)[cite: 10].
+
+Step 2: The outer loop controls the rows:
+        for (i = 1; i <= n; i++)[cite: 10]
+        → Runs 'n' times, once for each line from top to bottom[cite: 10].
+
+Step 3: First inner loop prints leading spaces:
+        for (j = 1; j <= n - i; j++)[cite: 10]
+        → Prints (n - i) spaces to push the stars toward the center[cite: 10].
+        → Spaces decrease as 'i' increases[cite: 10].
+
+Step 4: Second inner loop prints stars:
+        for (j = 1; j <= 2 * i - 1; j++)[cite: 10]
+        → Prints (2 * i - 1) stars in the current row[cite: 10].
+        → Produces the odd sequence of stars: 1, 3, 5, 7, ...[cite: 10]
+
+Step 5: Move to the next line:
+        printf("\n");[cite: 10]
+        → Shifts cursor to a new line after printing spaces and stars[cite: 10].
+
+Step 6: Example trace for n = 5[cite: 10]:
+
+        Row 1 (i = 1):
+        - Spaces = 5 - 1 = 4
+        - Stars  = 2(1) - 1 = 1
+        - Output: "    *"[cite: 10]
+
+        Row 2 (i = 2):
+        - Spaces = 5 - 2 = 3
+        - Stars  = 2(2) - 1 = 3
+        - Output: "   ***"[cite: 10]
+
+        Row 3 (i = 3):
+        - Spaces = 5 - 3 = 2
+        - Stars  = 2(3) - 1 = 5
+        - Output: "  *****"[cite: 10]
+
+        Row 4 (i = 4):
+        - Spaces = 5 - 4 = 1
+        - Stars  = 2(4) - 1 = 7
+        - Output: " *******"[cite: 10]
+
+        Row 5 (i = 5):
+        - Spaces = 5 - 5 = 0
+        - Stars  = 2(5) - 1 = 9
+        - Output: "*********"[cite: 10]
+
+Output:
+Enter no of line
+5
+    *
+   ***
+  *****
+ *******
+*********
+
+Notes:
+============================================================
+PYRAMID PATTERN FORMULAS:
+============================================================
+
+1. Leading Spaces Formula:
+   - Spaces needed per line = (n - i)[cite: 10]
+   - As row index 'i' increases from 1 to n, space count shrinks:
+     4, 3, 2, 1, 0 (for n = 5)[cite: 10].
+
+2. Star Count Formula:
+   - Stars needed per line = (2 * i - 1)[cite: 10]
+   - Generates the standard arithmetic odd series:
+     1, 3, 5, 7, 9...[cite: 10]
+
+
+Program7: Write a C program to print an inverted centered pyramid pattern of spaced stars based on a user-given number of lines
+
+SourceCode:
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Enter the number of lines :\n");
+    scanf("%d", &n);
+
+    for (int i = n; i >= 1; i--)
+    {
+        for (int j = n - i; j >= 1; j--)
+            printf(" ");
+
+        for (int j = 1; j <= 2 * i - 1; j++)
+            printf("* ");
+
+        printf("\n");
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Take the number of lines as input – stored in 'n'[cite: 9].
+        'i' controls the outer loop (row counter running backwards)[cite: 9].
+        'j' controls the inner loops (spaces and stars)[cite: 9].
+
+Step 2: The outer loop runs in reverse from 'n' down to 1:
+        for (int i = n; i >= 1; i--)[cite: 9]
+        → Starts at the widest base and decrements by 1 each row[cite: 9].
+
+Step 3: First inner loop prints leading spaces:
+        for (int j = n - i; j >= 1; j--)[cite: 9]
+        → Prints (n - i) spaces[cite: 9].
+        → Starts at 0 spaces on the first line and increases row by row[cite: 9].
+
+Step 4: Second inner loop prints star-space pairs:
+        for (int j = 1; j <= 2 * i - 1; j++)[cite: 9]
+            printf("* ");[cite: 9]
+        → Prints (2 * i - 1) instances of "* " (star with trailing space)[cite: 9].
+
+Step 5: Move to the next line:
+        printf("\n");[cite: 9]
+        → Shifts cursor to a new line after completing the current row[cite: 9].
+
+Step 6: Example trace for n = 5[cite: 9]:
+
+        Row 1 (i = 5):
+        - Spaces = 5 - 5 = 0
+        - Stars  = 2(5) - 1 = 9
+        - Prints 9 spaced stars: "* * * * * * * * *"[cite: 9]
+
+        Row 2 (i = 4):
+        - Spaces = 5 - 4 = 1
+        - Stars  = 2(4) - 1 = 7
+        - Prints 1 space followed by 7 spaced stars: " * * * * * * *"[cite: 9]
+
+        Row 3 (i = 3):
+        - Spaces = 5 - 3 = 2
+        - Stars  = 2(3) - 1 = 5
+        - Prints 2 spaces followed by 5 spaced stars: "  * * * * *"[cite: 9]
+
+        Row 4 (i = 2):
+        - Spaces = 5 - 2 = 3
+        - Stars  = 2(2) - 1 = 3
+        - Prints 3 spaces followed by 3 spaced stars: "   * * *"[cite: 9]
+
+        Row 5 (i = 1):
+        - Spaces = 5 - 1 = 4
+        - Stars  = 2(1) - 1 = 1
+        - Prints 4 spaces followed by 1 spaced star: "    *"[cite: 9]
+
+Output:
+Enter the number of lines :
+5
+* * * * * * * * * 
+ * * * * * * * 
+  * * * * * 
+   * * * 
+    * 
+
+Notes:
+============================================================
+INVERTED PYRAMID PATTERN FORMULAS:
+============================================================
+
+1. Inverted Outer Loop:
+   - Outer loop counts downwards: i = n down to 1[cite: 9].
+   - This causes star counts to naturally decrease without changing 
+     the core formula (2 * i - 1)[cite: 9].
+
+2. Spaced Output Nuance:
+   - Notice the inner print statement uses `printf("* ");` (star with space)[cite: 9].
+   - This creates an expanded wide triangular lattice appearance[cite: 9].
+   - If changed to `printf("*");` without the trailing space, it forms 
+     a solid inverted triangle.
+
+
+Program8: Write a C program to print a diamond star pattern based on a user-given half-height/size `n`
+
+SourceCode:
+#include <stdio.h>
+
+int main()
+{
+    int n, i, j;
+    printf("Enter size: ");
+    scanf("%d", &n);
+
+    // Upper pyramid (including center line)
+    for (i = 1; i <= n; i++)
+    {
+        for (j = 1; j <= n - i; j++)
+            printf(" ");
+        for (j = 1; j <= 2 * i - 1; j++)
+            printf("*");
+        printf("\n");
+    }
+
+    // Lower inverted pyramid
+    for (i = n - 1; i >= 1; i--)
+    {
+        for (j = 1; j <= n - i; j++)
+            printf(" ");
+        for (j = 1; j <= 2 * i - 1; j++)
+            printf("*");
+        printf("\n");
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Take the size as input – stored in 'n' (here n = 3)[cite: 11].
+        'n' represents the number of lines from the top peak to the widest row[cite: 11].
+        Total rows printed will be: (2 * n - 1) = 5 rows[cite: 11].
+
+Step 2: Upper Half (including center line, i = 1 to n):
+        - Spaces needed: (n - i)
+        - Stars needed:  (2 * i - 1)
+
+        Row 1 (i = 1):
+        - Spaces = 3 - 1 = 2
+        - Stars  = 2(1) - 1 = 1
+        - Output: "  *"[cite: 11]
+
+        Row 2 (i = 2):
+        - Spaces = 3 - 2 = 1
+        - Stars  = 2(2) - 1 = 3
+        - Output: " ***"[cite: 11]
+
+        Row 3 (i = 3):
+        - Spaces = 3 - 3 = 0
+        - Stars  = 2(3) - 1 = 5
+        - Output: "*****"[cite: 11]
+
+Step 3: Lower Half (inverted, i = n - 1 down to 1):
+        - Spaces needed: (n - i)
+        - Stars needed:  (2 * i - 1)
+
+        Row 4 (i = 2):
+        - Spaces = 3 - 2 = 1
+        - Stars  = 2(2) - 1 = 3
+        - Output: " ***"[cite: 11]
+
+        Row 5 (i = 1):
+        - Spaces = 3 - 1 = 2
+        - Stars  = 2(1) - 1 = 1
+        - Output: "  *"[cite: 11]
+
+Output:
+Enter size: 3
+  *
+ ***
+*****
+ ***
+  *
+
+Notes:
+============================================================
+DIAMOND PATTERN BREAKDOWN (n = 3):
+============================================================
+
+1. Division into Two Halves:
+   - Part 1: Standard upright pyramid of 'n' rows[cite: 10, 11].
+   - Part 2: Inverted pyramid of 'n - 1' rows starting immediately below 
+             the widest center line[cite: 9, 11].
+
+2. Symmetry of Formulas:
+   - Spaces: (n - i) in both loops[cite: 10].
+   - Stars:  (2 * i - 1) in both loops[cite: 10].
+   - The lower half achieves narrowing by running 'i' in reverse (n-1 down to 1)[cite: 9].
+
+
+Program9: Write a C program to print a diamond star pattern based on a user-given half-height/size `n` (executed for size 4)
+
+SourceCode:
+#include <stdio.h>
+
+int main()
+{
+    int n, i, j;
+    printf("Enter size: ");
+    scanf("%d", &n);
+
+    // Upper half (rows 1 to n)
+    for (i = 1; i <= n; i++)
+    {
+        for (j = 1; j <= n - i; j++)
+            printf(" ");
+        for (j = 1; j <= 2 * i - 1; j++)
+            printf("*");
+        printf("\n");
+    }
+
+    // Lower half (rows n - 1 down to 1)
+    for (i = n - 1; i >= 1; i--)
+    {
+        for (j = 1; j <= n - i; j++)
+            printf(" ");
+        for (j = 1; j <= 2 * i - 1; j++)
+            printf("*");
+        printf("\n");
+    }
+
+    return 0;
+}
+
+Process:
+Step 1: Take the size as input – stored in 'n' (here n = 4)[cite: 11].
+        Total rows = (2 * 4 - 1) = 7 rows[cite: 11].
+
+Step 2: Upper Half (i = 1 to 4):
+        - Spaces needed: (n - i)
+        - Stars needed:  (2 * i - 1)
+
+        Row 1 (i = 1):
+        - Spaces = 4 - 1 = 3
+        - Stars  = 2(1) - 1 = 1
+        - Output: "   *"[cite: 11]
+
+        Row 2 (i = 2):
+        - Spaces = 4 - 2 = 2
+        - Stars  = 2(2) - 1 = 3
+        - Output: "  ***"[cite: 11]
+
+        Row 3 (i = 3):
+        - Spaces = 4 - 3 = 1
+        - Stars  = 2(3) - 1 = 5
+        - Output: " *****"[cite: 11]
+
+        Row 4 (i = 4, center widest row):
+        - Spaces = 4 - 4 = 0
+        - Stars  = 2(4) - 1 = 7
+        - Output: "*******"[cite: 11]
+
+Step 3: Lower Half (i = 3 down to 1):
+        - Spaces needed: (n - i)
+        - Stars needed:  (2 * i - 1)
+
+        Row 5 (i = 3):
+        - Spaces = 4 - 3 = 1
+        - Stars  = 2(3) - 1 = 5
+        - Output: " *****"[cite: 11]
+
+        Row 6 (i = 2):
+        - Spaces = 4 - 2 = 2
+        - Stars  = 2(2) - 1 = 3
+        - Output: "  ***"[cite: 11]
+
+        Row 7 (i = 1):
+        - Spaces = 4 - 1 = 3
+        - Stars  = 2(1) - 1 = 1
+        - Output: "   *"[cite: 11]
+
+Output:
+Enter size: 4
+   *
+  ***
+ *****
+*******
+ *****
+  ***
+   *
+
+Notes:
+============================================================
+DIAMOND PATTERN BREAKDOWN (n = 4):
+============================================================
+
+1. Line Count & Width:
+   - Given size n = 4[cite: 11]:
+     * Peak has 1 star[cite: 11]
+     * Center widest line has: 2(4) - 1 = 7 stars[cite: 11]
+     * Total lines printed: 2(4) - 1 = 7 lines[cite: 11]
+
+2. Loop Behavior:
+   - Outer loop 1 builds up: i = 1, 2, 3, 4[cite: 10]
+   - Outer loop 2 steps down: i = 3, 2, 1[cite: 9]
+   - Because both use `(2 * i - 1)` for stars and `(n - i)` for spaces, 
+     perfect geometric symmetry is maintained on both sides of the center line[cite: 10, 11].
+
 
