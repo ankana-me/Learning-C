@@ -214,7 +214,8 @@ on the current outer loop value $i$.
 `printf("%d", i);`, it would instead print repeated row values (`1`, `22`, `333`).
 
 
-Program3: Write a C program to print an inverted right-angled triangular pattern where each line prints its line number repeatedly
+Program3: Write a C program to print an inverted right-angled triangular pattern where each line prints its line number 
+repeatedly
 
 SourceCode:
 #include <stdio.h>
@@ -314,7 +315,8 @@ Enter no of line
 If `j` were printed instead, the rows would count upwards from 1 (e.g., `12345`, `1234`).
 
 
-Program4: Write a C program to perform and display the results of Bitwise AND (`&`), Bitwise OR (`|`), and Bitwise XOR (`^`) operations on two given integers
+Program4: Write a C program to perform and display the results of Bitwise AND (`&`), Bitwise OR (`|`), and Bitwise XOR (`^`)
+operations on two given integers
 
 SourceCode:
 #include <stdio.h>
@@ -400,7 +402,8 @@ Notes:
       - Example: 10 >> 1 = 10 / (2^1) = 10 / 2 = 5
 
 
-Program5: Write a C program to print an inverted right-angled triangular pattern where each line counts down from the total number of lines
+Program5: Write a C program to print an inverted right-angled triangular pattern where each line counts down from the total
+number of lines
 
 SourceCode:c
 #include <stdio.h>
@@ -607,7 +610,8 @@ PYRAMID PATTERN FORMULAS:
      1, 3, 5, 7, 9...[cite: 10]
 
 
-Program7: Write a C program to print an inverted centered pyramid pattern of spaced stars based on a user-given number of lines
+Program7: Write a C program to print an inverted centered pyramid pattern of spaced stars based on a user-given number of 
+lines
 
 SourceCode:
 #include <stdio.h>
