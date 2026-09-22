@@ -368,7 +368,7 @@ Step 5: Output results:
         printf("lcm = %d\n", lcm);[cite: 5]
 
 Key idea: The GCD (Greatest Common Divisor) is the highest integer that divides both numbers evenly. 
-The loop tests potential common divisors in increasing order up to the smaller number; the last match found becomes the GCD. 
+The loop tests potential common divisors in increasing order up to the smaller number; the last match found becomes the GCD.
 The LCM is then directly computed using the standard formula $\text{LCM}(a, b) = \frac{a \times b}{\text{GCD}(a, b)}$.
 
 Example (Test Runs):
