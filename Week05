@@ -287,7 +287,8 @@ Step 4: Check if the reversed number equals the original number:
         → Print "not a palindrome number"
 
 Key idea: A palindrome number reads the same backward as forward (such as 121 or 1331). 
-The program preserves the original value in `temp`, reverses `n` mathematically using modulo (`% 10`) and division (`/ 10`), 
+The program preserves the original value in `temp`, reverses `n` mathematically using modulo (`% 10`) and 
+division (`/ 10`), 
 and tests if `rev == temp`.
 
 Example (Test Runs):
@@ -366,7 +367,9 @@ Step 5: Output results:
         printf("gcd = %d\n", gcd);[cite: 5]
         printf("lcm = %d\n", lcm);[cite: 5]
 
-Key idea: The GCD (Greatest Common Divisor) is the highest integer that divides both numbers evenly. The loop tests potential common divisors in increasing order up to the smaller number; the last match found becomes the GCD. The LCM is then directly computed using the standard formula $\text{LCM}(a, b) = \frac{a \times b}{\text{GCD}(a, b)}$.
+Key idea: The GCD (Greatest Common Divisor) is the highest integer that divides both numbers evenly. 
+The loop tests potential common divisors in increasing order up to the smaller number; the last match found becomes the GCD. 
+The LCM is then directly computed using the standard formula $\text{LCM}(a, b) = \frac{a \times b}{\text{GCD}(a, b)}$.
 
 Example (Test Runs):
 Input:  7 6
