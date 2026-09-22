@@ -22,7 +22,8 @@ Temperature in Fahrenheit = 73.40
 
 ------------------------------------------------------------------------------------------------------
 
-Program2 : Write a program to take input of radius of a circle then calculate area and perimeter at the end print both the result.
+Program2 : Write a program to take input of radius of a circle then calculate area and perimeter at 
+the end print both the result.
 
 SourceCode :
 #include <stdio.h>
@@ -291,7 +292,8 @@ the loader reads the file from disk, allocates memory, maps virtual memory segme
 initializes the stack and CPU registers, and transfers execution control to the main program.
 
 # Type casting in C is the process of converting a variable or value from one data type to another. 
-It allows you to temporarily alter how the compiler interprets a piece of data to perform specific operations, maintain precision, or ensure compatibility across different data types.
+It allows you to temporarily alter how the compiler interprets a piece of data to perform specific operations, 
+maintain precision, or ensure compatibility across different data types.
 
 Key Differences at a Glance
 
