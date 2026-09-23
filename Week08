@@ -437,3 +437,410 @@ SECOND LARGEST ELEMENT LOGIC:
      largest value shifts down into 's_max' before 'max' takes the new value[cite: 16].
    - If a number is not larger than 'max' but beats 's_max', only 's_max' 
      is replaced[cite: 16].
+
+
+Program: Write a C program to take input of an integer array, reverse the original array in place, and print the reversed array
+
+SourceCode:
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int n, i;
+    scanf("%d", &n);
+    int arr[n];
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    for (i = 0; i < n / 2; i++) {
+        arr[i] = arr[i] + arr[n - 1 - i];
+        arr[n - 1 - i] = arr[i] - arr[n - 1 - i];
+        arr[i] = arr[i] - arr[n - 1 - i];
+    }
+    printf("Reversed array:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
+
+```
+
+Process:
+
+```text
+Process:
+Step 1: Declare variables 'n' (array size) and 'i' (loop index)[cite: 17].
+        Read 'n' from user input and allocate array 'arr[n]'[cite: 17].
+
+Step 2: Read 'n' elements into 'arr' using a for loop from index 0 to n - 1[cite: 17]:
+        for (i = 0; i < n; i++)[cite: 17]
+        {
+            scanf("%d", &arr[i]);[cite: 17]
+        }
+
+Step 3: Reverse the array in-place by running a loop up to the midpoint (n / 2)[cite: 17]:
+        for (i = 0; i < n / 2; i++)[cite: 17]
+        → Pairs element at index 'i' with its symmetric counterpart 
+          from the end at index 'n - 1 - i'[cite: 17].
+
+Step 4: Swap elements without using a third/temporary variable[cite: 17]:
+        arr[i]         = arr[i] + arr[n - 1 - i];[cite: 17]
+        arr[n - 1 - i] = arr[i] - arr[n - 1 - i];[cite: 17]
+        arr[i]         = arr[i] - arr[n - 1 - i];[cite: 17]
+
+Step 5: Example trace for n = 5 and elements {7, 3, 9, 8, 5}[cite: 17]:
+        Midpoint limit = 5 / 2 = 2 (loop runs for i = 0 and i = 1)[cite: 17].
+
+        - i = 0 (swap arr[0] and arr[4])[cite: 17]:
+          arr[0] = 7, arr[4] = 5[cite: 17]
+          arr[0] = 7 + 5 = 12[cite: 17]
+          arr[4] = 12 - 5 = 7[cite: 17]
+          arr[0] = 12 - 7 = 5[cite: 17]
+          Array becomes: {5, 3, 9, 8, 7}
+
+        - i = 1 (swap arr[1] and arr[3])[cite: 17]:
+          arr[1] = 3, arr[3] = 8[cite: 17]
+          arr[1] = 3 + 8 = 11[cite: 17]
+          arr[3] = 11 - 8 = 3[cite: 17]
+          arr[1] = 11 - 3 = 8[cite: 17]
+          Array becomes: {5, 8, 9, 3, 7}
+
+        - i = 2:
+          Loop terminates because condition (i < 2) is false[cite: 17].
+          Middle element arr[2] (9) stays untouched in place[cite: 17].
+
+Step 6: Print the reversed array:
+        printf("Reversed array:\n");[cite: 17]
+        for (i = 0; i < n; i++)[cite: 17]
+        {
+            printf("%d ", arr[i]);[cite: 17]
+        }
+
+```
+
+Output:
+
+```text
+5
+7
+3
+9
+8
+5
+Reversed array:
+5 8 9 3 7 
+
+```
+
+Notes:
+
+```text
+============================================================
+IN-PLACE ARRAY REVERSAL LOGIC:
+============================================================
+
+1. Symmetric Index Pairing:
+   - Index 'i' from the left corresponds to 'n - 1 - i' from the right[cite: 17].
+   - Example (n = 5):
+     i = 0  <--->  5 - 1 - 0 = 4[cite: 17]
+     i = 1  <--->  5 - 1 - 1 = 3[cite: 17]
+
+2. Why Loop Only Up to n / 2?
+   - Integer division 'n / 2' automatically handles both odd and even sizes[cite: 17].
+   - If the loop ran up to 'n', each pair would be swapped twice, 
+     restoring the array to its original order!
+
+3. Swapping Without a Third Variable:
+   - Uses arithmetic addition and subtraction to exchange values[cite: 17]:
+     a = a + b[cite: 17]
+     b = a - b[cite: 17]
+     a = a - b[cite: 17]
+   - Space complexity is O(1) auxiliary memory because no extra 
+     temporary array or variable is needed[cite: 17].
+
+```
+
+Program: Write a C program to take input of a positive integer array and count how many elements are prime
+
+SourceCode:
+
+```c
+#include <stdio.h>
+int main()
+{
+    int n,i,j,c=0;
+    scanf("%d",&n);
+    int a[n];
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+        for(j=2;j<=a[i]/2;j++)
+        {
+            if(a[i]%j==0)
+            {
+                break;
+            }
+        }
+        if(j>a[i]/2 && a[i]!=1)
+        {
+            c++;
+        }
+    }
+    printf("%d",c);
+}
+
+```
+
+Process:
+
+```text
+Process:
+Step 1: Declare variables 'n' (array size), 'i' (outer loop index for array elements), 
+        'j' (inner loop divisor index), and initialize 'c' to 0 (counter for prime numbers)[cite: 18].
+
+Step 2: Read the total number of elements 'n' and allocate the array 'a[n]'[cite: 18].
+
+Step 3: Use an outer for loop to read and check each element one by one from i = 0 to n - 1[cite: 18]:
+        for(i = 0; i < n; i++)[cite: 18]
+        {
+            scanf("%d", &a[i]);[cite: 18]
+
+Step 4: Use an inner for loop to check whether the current element 'a[i]' is divisible 
+        by any integer starting from 2 up to a[i] / 2[cite: 18]:
+        for(j = 2; j <= a[i] / 2; j++)[cite: 18]
+        {
+            if(a[i] % j == 0)[cite: 18]
+            {
+                break; // factor found, stop checking[cite: 18]
+            }
+        }
+
+Step 5: Check whether 'a[i]' completed the loop without finding any factors[cite: 18]:
+        if(j > a[i] / 2 && a[i] != 1)[cite: 18]
+        {
+            c++; // increment prime counter[cite: 18]
+        }
+        → If the loop finished naturally without breaking, 'j' exceeds a[i] / 2[cite: 18].
+        → The condition 'a[i] != 1' ensures the number 1 is not counted as prime[cite: 18].
+
+Step 6: Example trace for n = 5 and elements {12, 4, 5, 7, 9}[cite: 18]:
+        Initial: c = 0[cite: 18]
+
+        - a[0] = 12:
+          Check up to 12 / 2 = 6.
+          j = 2: 12 % 2 == 0 → break[cite: 18].
+          Condition (j > 6) is false → c remains 0.
+
+        - a[1] = 4:
+          Check up to 4 / 2 = 2.
+          j = 2: 4 % 2 == 0 → break[cite: 18].
+          Condition (j > 2) is false → c remains 0.
+
+        - a[2] = 5:
+          Check up to 5 / 2 = 2.
+          j = 2: 5 % 2 != 0.
+          j increments to 3, condition (3 <= 2) becomes false (loop ends naturally).
+          Condition (j > 2 && 5 != 1) is true (3 > 2) → c increments to 1[cite: 18].
+
+        - a[3] = 7:
+          Check up to 7 / 2 = 3.
+          j = 2: 7 % 2 != 0.
+          j = 3: 7 % 3 != 0.
+          j increments to 4, condition (4 <= 3) becomes false (loop ends naturally).
+          Condition (j > 3 && 7 != 1) is true (4 > 3) → c increments to 2[cite: 18].
+
+        - a[4] = 9:
+          Check up to 9 / 2 = 4.
+          j = 2: 9 % 2 != 0.
+          j = 3: 9 % 3 == 0 → break[cite: 18].
+          Condition (j > 4) is false → c remains 2.
+
+Step 7: Print the total prime count 'c'[cite: 18]:
+        printf("%d", c);[cite: 18]
+
+```
+
+Output:
+
+```text
+5
+12
+4
+5
+7
+9
+2
+
+```
+
+Notes:
+
+```text
+============================================================
+ARRAY PRIME COUNT LOGIC:
+============================================================
+
+1. Prime Verification Boundary (a[i] / 2):
+   - A number cannot have any factor greater than half its value (other than itself)[cite: 18].
+   - Checking up to 'a[i] / 2' ensures all potential non-trivial divisors are tested[cite: 18].
+
+2. Loop Exit Detection via 'j > a[i] / 2':
+   - If an element is divisible by any 'j', the 'break' statement terminates the loop early, 
+     leaving 'j <= a[i] / 2'[cite: 18].
+   - If no divisor is found, the loop finishes by incrementing 'j' one final time, 
+     making 'j > a[i] / 2'[cite: 18].
+
+3. Special Handling for 1:
+   - 1 is neither prime nor composite.
+   - For a[i] = 1, 1 / 2 = 0, so the loop for(j = 2; j <= 0) never executes and j stays 2.
+   - Without the explicit check '&& a[i] != 1', 1 would incorrectly be counted as prime[cite: 18].
+
+```
+
+
+Program: Write a C program to take input of a positive integer array and print all palindrome numbers in the array
+
+SourceCode:
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int n, i, x, r, rev;
+
+    scanf("%d", &n);
+
+    int a[n];
+
+    for(i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    for(i = 0; i < n; i++)
+    {
+        x = a[i];
+        rev = 0;
+
+        while(x > 0)
+        {
+            r = x % 10;
+            rev = rev * 10 + r;
+            x = x / 10;
+        }
+
+        if(rev == a[i])
+        {
+            printf("%d\n", a[i]);
+        }
+    }
+
+    return 0;
+}
+
+```
+
+Process:
+
+```text
+Process:
+Step 1: Declare variables 'n' (array size), 'i' (loop counter), 'x' (temporary variable 
+        to reverse digits), 'r' (extracted digit), and 'rev' (reversed number)[cite: 19].
+
+Step 2: Read the total number of elements 'n' and allocate array 'a[n]'[cite: 19].
+
+Step 3: Read 'n' positive integers into the array using a for loop from index 0 to n - 1[cite: 19]:
+        for(i = 0; i < n; i++)[cite: 19]
+        {
+            scanf("%d", &a[i]);[cite: 19]
+        }
+
+Step 4: Iterate through each element of the array using a second for loop[cite: 19]:
+        for(i = 0; i < n; i++)[cite: 19]
+
+        - Copy the current element into 'x' so the original array value is preserved:
+          x = a[i];[cite: 19]
+
+        - Reset 'rev' to 0 for every new element:
+          rev = 0;[cite: 19]
+
+Step 5: Reverse the digits of 'x' using a while loop[cite: 19]:
+        while(x > 0)[cite: 19]
+        {
+            r = x % 10;          // extract last digit[cite: 19]
+            rev = rev * 10 + r;  // append digit to rev[cite: 19]
+            x = x / 10;          // strip last digit from x[cite: 19]
+        }
+
+Step 6: Check if the reversed number matches the original array element[cite: 19]:
+        if(rev == a[i])[cite: 19]
+        {
+            printf("%d\n", a[i]);[cite: 19]
+        }
+
+Step 7: Example trace for array {12, 8, 11, 19, 22} (n = 5)[cite: 19]:
+
+        - a[0] = 12:
+          Reversal: rev = 21[cite: 19]
+          21 == 12 (False) → Not printed
+
+        - a[1] = 8:
+          Reversal: rev = 8[cite: 19]
+          8 == 8 (True) → Prints 8[cite: 19]
+
+        - a[2] = 11:
+          Reversal: rev = 11[cite: 19]
+          11 == 11 (True) → Prints 11[cite: 19]
+
+        - a[3] = 19:
+          Reversal: rev = 91[cite: 19]
+          91 == 19 (False) → Not printed
+
+        - a[4] = 22:
+          Reversal: rev = 22[cite: 19]
+          22 == 22 (True) → Prints 22[cite: 19]
+
+```
+
+Output:
+
+```text
+5
+12
+8
+11
+19
+22
+8
+11
+22
+
+```
+
+Notes:
+
+```text
+============================================================
+ARRAY PALINDROME FILTER LOGIC:
+============================================================
+
+1. Preservation of Original Element:
+   - Reversing a number via 'x / 10' reduces 'x' to 0[cite: 19].
+   - Copying 'a[i]' into 'x' ensures that 'a[i]' remains intact for 
+     the final comparison: if(rev == a[i])[cite: 19].
+
+2. Re-initialization of rev:
+   - 'rev = 0;' must be placed inside the outer loop[cite: 19].
+   - Failing to reset 'rev' for each element causes previous reversed 
+     values to contaminate subsequent checks.
+
+3. Single-Digit Palindromes:
+   - Any single-digit positive integer (0–9) is inherently a palindrome 
+     because reversing it yields the exact same digit (e.g., 8 reversed is 8)[cite: 19].
+
+```
