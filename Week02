@@ -280,7 +280,7 @@ output:
 void main()
 {
 int a=5;
-printf("%d %d",sizeof(a),size(float));
+printf("%d %d",sizeof(a),sizeof(float));
 }
 output:
 4 4
